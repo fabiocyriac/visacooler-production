@@ -4,8 +4,6 @@
 
 #### Support
 
-Find the App Useful? [You can always buy me a coffee](https://www.buymeacoffee.com/johnsmilga)
-
 #### Run The App Locally
 
 ```sh
