@@ -1,8 +1,6 @@
-# Jobify
+# visacooler
 
-#### Track Your Job Search
-
-Project in Action - [Jobify](https://www.jobify.live/)
+#### Track Your Visa Search
 
 #### Support
 
