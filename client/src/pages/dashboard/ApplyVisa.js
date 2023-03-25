@@ -43,16 +43,9 @@ const ApplyVisa = () => {
   return (
     <Wrapper>
       <form className='form'>
-        <h3>{isEditing ? 'edit visa' : 'apply visa'}</h3>
+        <h3>{isEditing ? 'Apply visa' : 'Add visa'}</h3>
         {showAlert && <Alert />}
         <div className='form-center'>
-          {/* caseManager */}
-          <FormRow
-            type='text'
-            name='caseManager'
-            value={caseManager}
-            handleChange={handleVisaInput}
-          />
           {/* country */}
           <FormRow
             type='text'
@@ -82,6 +75,13 @@ const ApplyVisa = () => {
             value={visaType}
             handleChange={handleVisaInput}
             list={visaTypeOptions}
+          />
+          {/* caseManager */}
+          <FormRow
+            type='text'
+            name='caseManager'
+            value={caseManager}
+            handleChange={handleVisaInput}
           />
           {/* btn container */}
           <div className='btn-container'>

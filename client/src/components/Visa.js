@@ -29,9 +29,9 @@ const Visa = ({
       </header>
       <div className='content'>
         <div className='content-center'>
-          <VisaInfo icon={<FaLocationArrow />} text={visaLocation} />
-          <VisaInfo icon={<FaCalendarAlt />} text={date} />
-          <VisaInfo icon={<FaBriefcase />} text={visaType} />
+          <VisaInfo icon={<FaLocationArrow />} text={`Country: ${visaLocation}`} />
+          <VisaInfo icon={<FaCalendarAlt />} text={`date: ${date}`} />
+          <VisaInfo icon={<FaBriefcase />} text={`visaType: ${visaType}`} />
           <VisaInfo icon={<FaBriefcase />} text={`status: ${visaLocation}`} />
           <VisaInfo icon={<FaLocationArrow />} text={`visaType: ${visaType}`} />
           <VisaInfo icon={<FaCalendarAlt />} text={`date: ${date}`} />
@@ -48,7 +48,7 @@ const Visa = ({
               className='btn edit-btn'
               onClick={() => setEditVisa(_id)}
             >
-              Edit
+              Apply
             </Link>
             <button
               type='button'

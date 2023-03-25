@@ -43,17 +43,9 @@ const SearchContainer = () => {
 
           <FormRow
             type='text'
-            name='search'
+            name='search for a country'
             value={localSearch}
             handleChange={optimizedDebounce}
-          />
-          {/* search by status */}
-          <FormRowSelect
-            labelText='status'
-            name='searchStatus'
-            value={searchStatus}
-            handleChange={handleSearch}
-            list={['all', ...statusOptions]}
           />
           {/* search by type */}
           <FormRowSelect
