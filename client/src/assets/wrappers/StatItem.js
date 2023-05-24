@@ -4,7 +4,6 @@ const Wrapper = styled.article`
   padding: 2rem;
   cursor: pointer;
   background: var(--white);
-  border-radius: var(--borderRadius);
   border-bottom: 5px solid ${(props) => props.color};
   header {
     display: flex;
