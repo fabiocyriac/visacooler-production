@@ -36,11 +36,7 @@ const StatsContainer = () => {
   return (
     <Wrapper>
       {defaultStats.map((item, index) => {
-        return <Link to='/all-visas'>
-          <div>
-          <StatItem key={index} {...item} />
-          </div>
-        </Link>
+        return <StatItem key={index} {...item} />
       })}
     </Wrapper>
   )
