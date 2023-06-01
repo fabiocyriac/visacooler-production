@@ -29,16 +29,14 @@ const Visa = ({
       </header>
       <div className='content'>
         <div className='content-center'>
-          <VisaInfo icon={<FaLocationArrow />} text={`Country: ${visaLocation}`} />
-          <VisaInfo icon={<FaCalendarAlt />} text={`date: ${date}`} />
-          <VisaInfo icon={<FaBriefcase />} text={`visaType: ${visaType}`} />
-          <VisaInfo icon={<FaBriefcase />} text={`status: ${visaLocation}`} />
-          <VisaInfo icon={<FaLocationArrow />} text={`visaType: ${visaType}`} />
-          <VisaInfo icon={<FaCalendarAlt />} text={`date: ${date}`} />
-          <VisaInfo icon={<FaBriefcase />} text={`status: ${visaLocation}`} />
-          <VisaInfo icon={<FaBriefcase />} text={`status: ${visaLocation}`} />
-          <VisaInfo icon={<FaCalendarAlt />} text={`status: ${visaType}`} />
-          <VisaInfo icon={<FaLocationArrow />} text={`caseManager: ${caseManager}`} />
+          <VisaInfo icon={<FaLocationArrow />} text1={'Country: '} text2={visaLocation} />
+          <VisaInfo icon={<FaCalendarAlt />} text1={`date: `} text2={date} />
+          <VisaInfo icon={<FaBriefcase />} text1={`Type: `} text2={visaType} />
+          <VisaInfo icon={<FaBriefcase />} text1={`Location: `} text2={visaLocation} />
+          <VisaInfo icon={<FaBriefcase />} text1={`date: `} text2={date} />
+          <VisaInfo icon={<FaCalendarAlt />} text1={`Location: `} text2={visaLocation} />
+          <VisaInfo icon={<FaLocationArrow />} text1={`Type: `} text2={visaType} />
+          <VisaInfo icon={<FaLocationArrow />} text1={`caseManager: `} text2={caseManager} />
           <div className={`status ${status}`}>{status}</div>
         </div>
         <footer>

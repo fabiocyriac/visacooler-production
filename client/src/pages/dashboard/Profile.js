@@ -111,6 +111,83 @@ const Profile = () => {
             value={phonenumber}
             handleChange={(e) => setPhonenumber(e.target.value)}
           />
+    
+        <FormRow
+            type='text'
+            name='name'
+            value={name}
+            handleChange={(e) => setName(e.target.value)}
+          />
+          <FormRow
+            type='text'
+            labelText='last name'
+            name='lastName'
+            value={lastName}
+            handleChange={(e) => setLastName(e.target.value)}
+          />
+          <FormRow
+            type='email'
+            name='email'
+            value={email}
+            handleChange={(e) => setEmail(e.target.value)}
+          />
+          <FormRow
+            type='text'
+            name='location'
+            value={location}
+            handleChange={(e) => setLocation(e.target.value)}
+          />
+          <FormRow
+            type='text'
+            labelText='country/location of birth'
+            name='birthlocation'
+            value={birthlocation}
+            handleChange={(e) => setBirthlocation(e.target.value)}
+          />
+          <FormRow
+            type='text'
+            labelText='State/Province of birth'
+            name='birthstate'
+            value={birthstate}
+            handleChange={(e) => setBirthstate(e.target.value)}
+          />
+          <FormRow
+            type='text'
+            labelText='city of birth'
+            name='birthcity'
+            value={birthcity}
+            handleChange={(e) => setBirthcity(e.target.value)}
+          />
+          <FormRow
+            type='text'
+            labelText='Gender'
+            name='gender'
+            value={gender}
+            handleChange={(e) => setGender(e.target.value)}
+          />
+          <FormRow
+            type='text'
+            labelText='Relationship Status'
+            name='relationshipstatus'
+            value={relationshipstatus}
+            handleChange={(e) => setRelationshipstatus(e.target.value)}
+          />
+                    <FormRow
+            type='text'
+            labelText='date of birth'
+            name='dateofbirth'
+            value={dateofbirth}
+            handleChange={(e) => setDateofbirth(e.target.value)}
+          />
+                    <FormRow
+            type='text'
+            labelText='phone number'
+            name='phonenumber'
+            value={phonenumber}
+            handleChange={(e) => setPhonenumber(e.target.value)}
+          />
+
+
 
 
           <button className='btn btn-block' type='submit' disabled={isLoading}>

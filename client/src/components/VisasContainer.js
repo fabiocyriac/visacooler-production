@@ -39,9 +39,6 @@ const VisasContainer = () => {
   return (
     <Wrapper>
       {showAlert && <Alert />}
-      <h5>
-        {totalVisas} visa{visas.length > 1 && 's'} found
-      </h5>
       <div className='visas'>
         {visas.map((visa) => {
           return <Visa key={visa._id} {...visa} />;

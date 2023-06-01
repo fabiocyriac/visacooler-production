@@ -14,9 +14,16 @@ const Wrapper = styled.div`
       color: var(--grey-400);
     }
   }
-  .text {
+  .text1 {
+    color: var(--grey-400);
+    padding-right: 3px;
     text-transform: capitalize;
     letter-spacing: var(--letterSpacing);
+  }
+  .text2 {
+    text-transform: capitalize;
+    letter-spacing: var(--letterSpacing);
+    
   }
 `
 export default Wrapper
