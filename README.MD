@@ -22,7 +22,7 @@ npm start
 
 #### Prepare for Deployment
 
-- editing for visual studio code
+- editing for visual studio code editing
 - in client remove build and node_modules and package-lock.json
 - in server remove node_modules and package-lock.json
 
