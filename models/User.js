@@ -37,6 +37,11 @@ const UserSchema = new mongoose.Schema({
     maxlength: 20,
     default: 'my city',
   },
+  partnerId: {
+    type: mongoose.Types.ObjectId,
+    ref: 'Partner',
+    required: [true, 'Please provide partner'],
+  },
 })
 
 UserSchema.pre('save', async function () {

@@ -1,27 +1,23 @@
-import Visa from '../models/Visa.js';
+import Partner from '../models/Partner.js';
 import { StatusCodes } from 'http-status-codes';
 import {
   BadRequestError,
   NotFoundError,
-  UnAuthenticatedError,
 } from '../errors/index.js';
 import checkPermissions from '../utils/checkPermissions.js';
-import mongoose from 'mongoose';
-import moment from 'moment';
 
-const createVisa = async (req, res) => {
-  const { caseManager, country } = req.body;
+const createPartner = async (req, res) => {
+  const { name, logo } = req.body;
 
-  if (!caseManager || !country) {
+  if (!name || !logo) {
     throw new BadRequestError('Please provide all values');
   }
-  req.body.createdBy = req.user.userId;
-  const visa = await Visa.create(req.body);
-  res.status(StatusCodes.CREATED).json({ visa });
+  const partner = await Partner.create(req.body);
+  res.status(StatusCodes.CREATED).json({ partner });
 };
 
 
-const getAllVisas = async (req, res) => {
+const getAllPartners = async (req, res) => {
   const { status, visaType, sort, search } = req.query;
 
   const queryObject = {
@@ -73,7 +69,8 @@ const getAllVisas = async (req, res) => {
 
   res.status(StatusCodes.OK).json({ visas, totalVisas, numOfPages });
 };
-const updateVisa = async (req, res) => {
+
+const updatePartner = async (req, res) => {
   const { id: visaId } = req.params;
   const { country, caseManager } = req.body;
 
@@ -97,7 +94,7 @@ const updateVisa = async (req, res) => {
   res.status(StatusCodes.OK).json({ updatedVisa });
 };
 
-const deleteVisa = async (req, res) => {
+const deletePartner = async (req, res) => {
   const { id: visaId } = req.params;
 
   const visa = await Visa.findOne({ _id: visaId });
@@ -113,49 +110,5 @@ const deleteVisa = async (req, res) => {
   res.status(StatusCodes.OK).json({ msg: 'Success! Visa removed' });
 };
 
-const showStats = async (req, res) => {
-  let stats = await Visa.aggregate([
-    { $match: { createdBy: mongoose.Types.ObjectId(req.user.userId) } },
-    { $group: { _id: '$status', count: { $sum: 1 } } },
-  ]);
-  stats = stats.reduce((acc, curr) => {
-    const { _id: title, count } = curr;
-    acc[title] = count;
-    return acc;
-  }, {});
 
-  const defaultStats = {
-    pending: stats.pending || 0,
-    interview: stats.interview || 0,
-    approved: stats.approved || 0,
-  };
-
-  let monthlyApplications = await Visa.aggregate([
-    { $match: { createdBy: mongoose.Types.ObjectId(req.user.userId) } },
-    {
-      $group: {
-        _id: { year: { $year: '$createdAt' }, month: { $month: '$createdAt' } },
-        count: { $sum: 1 },
-      },
-    },
-    { $sort: { '_id.year': -1, '_id.month': -1 } },
-    { $limit: 6 },
-  ]);
-  monthlyApplications = monthlyApplications
-    .map((item) => {
-      const {
-        _id: { year, month },
-        count,
-      } = item;
-      const date = moment()
-        .month(month - 1)
-        .year(year)
-        .format('MMM Y');
-      return { date, count };
-    })
-    .reverse();
-
-  res.status(StatusCodes.OK).json({ defaultStats, monthlyApplications });
-};
-
-export { createVisa, deleteVisa, getAllVisas, updateVisa, showStats };
+export { createPartner, deletePartner, getAllPartners, updatePartner };

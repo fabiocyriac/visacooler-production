@@ -271,7 +271,7 @@ ul {
   animation: spinner 2s linear infinite;
 }
 .loading-center {
-  margin: 0 auto;
+  margin: 0 auto !important;
 }
 /* title */
 
@@ -293,7 +293,7 @@ ul {
   margin: 0 auto;
 }
 .full-page {
-  min-height: 100vh;
+  min-height: 90vh;
 }
 
 .coffee-info {
@@ -313,6 +313,16 @@ ul {
   background: #ffff
 }
 
+/* section */
+.section {
+  padding: 5rem 0;
+}
+.section-center {
+  width: 90vw;
+  margin: 0 auto;
+  max-width: var(--max-width);
+}
+
 @media screen and (min-width: 992px) {
   .coffee-info {
     text-align: left;
@@ -320,5 +330,8 @@ ul {
   .coffee-info span {
     display: inline-block;
     margin-right: 0.5rem;
+  }
+  .section-center {
+    width: 95vw;
   }
 }

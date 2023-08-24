@@ -123,6 +123,29 @@ const AppProvider = ({ children }) => {
     }
     clearAlert();
   };
+
+  const setupPartner = async ({ currentUser, endPoint, alertText }) => {
+    dispatch({ type: SETUP_USER_BEGIN });
+    try {
+      const { data } = await axios.post(
+        `/api/v1/auth/${endPoint}`,
+        currentUser
+      );
+
+      const { user, location } = data;
+      dispatch({
+        type: SETUP_USER_SUCCESS,
+        payload: { user, location, alertText },
+      });
+    } catch (error) {
+      dispatch({
+        type: SETUP_USER_ERROR,
+        payload: { msg: error.response.data.msg },
+      });
+    }
+    clearAlert();
+  };
+
   const toggleSidebar = () => {
     dispatch({ type: TOGGLE_SIDEBAR });
   };
@@ -294,6 +317,7 @@ const AppProvider = ({ children }) => {
         ...state,
         displayAlert,
         setupUser,
+        setupPartner,
         toggleSidebar,
         logoutUser,
         updateUser,

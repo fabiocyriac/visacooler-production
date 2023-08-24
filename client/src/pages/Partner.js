@@ -6,19 +6,16 @@ import { useNavigate } from 'react-router-dom';
 const initialState = {
   name: '',
   email: '',
-  password: '',
-  isMember: true,
+  company: '',
+  phone: '',
 };
 
-const Register = () => {
+const Partner = () => {
   const navigate = useNavigate();
   const [values, setValues] = useState(initialState);
   const { user, isLoading, showAlert, displayAlert, setupUser } =
     useAppContext();
 
-  const toggleMember = () => {
-    setValues({ ...values, isMember: !values.isMember });
-  };
 
   const handleChange = (e) => {
     setValues({ ...values, [e.target.name]: e.target.value });
@@ -31,19 +28,11 @@ const Register = () => {
       return;
     }
     const currentUser = { name, email, password };
-    if (isMember) {
       setupUser({
         currentUser,
         endPoint: 'login',
         alertText: 'Login Successful! Redirecting...',
-      });
-    } else {
-      setupUser({
-        currentUser,
-        endPoint: 'register',
-        alertText: 'User Created! Redirecting...',
-      });
-    }
+      }); 
   };
 
   useEffect(() => {
@@ -57,7 +46,7 @@ const Register = () => {
   return (
     <Wrapper className='full-page'>
       <form className='form' onSubmit={onSubmit}>
-        <h3>{values.isMember ? 'Login' : 'Register'}</h3>
+        <h3>Become a Partner</h3>
         {showAlert && <Alert />}
         {/* name input */}
         {!values.isMember && (
@@ -76,24 +65,41 @@ const Register = () => {
           value={values.email}
           handleChange={handleChange}
         />
+
+        {/* company input */}
+        <FormRow
+          type='company'
+          name='company'
+          value={values.company}
+          handleChange={handleChange}
+        />
         {/* password input */}
         <FormRow
-          type='password'
-          name='password'
-          value={values.password}
+          type='phone'
+          name='Phone Number'
+          value={values.phone}
           handleChange={handleChange}
         />
         <button type='submit' className='btn btn-block' disabled={isLoading}>
           submit
         </button>
-        <p>
-          {values.isMember ? 'Not a member yet?' : 'Already a member?'}
-          <button type='button' onClick={toggleMember} className='member-btn'>
-            {values.isMember ? 'Register' : 'Login'}
-          </button>
-        </p>
+        <button
+          type='button'
+          className='btn btn-block btn-hipster'
+          disabled={isLoading}
+          onClick={() => {
+            setupUser({
+              currentUser: { email: 'testUser@test.com', password: 'secret' },
+              endPoint: 'login',
+              alertText: 'Login Successful! Redirecting...',
+            });
+          }}
+        >
+          {isLoading ? 'loading...' : 'demo app'}
+        </button>
       </form>
+      <p className='loading-center'>{`Make an easy move to Visacooler today. We use the contact information you provide to us to contact you about our products and services`}</p>
     </Wrapper>
   );
 };
-export default Register;
+export default Partner;
