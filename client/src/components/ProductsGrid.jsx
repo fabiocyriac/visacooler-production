@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom';
 import { formatPrice } from '../utils';
 import { useSelector } from 'react-redux'
-import course1 from '../assets/course1.png'
-import course2 from '../assets/course2.png'
+import course1 from '../assets/course1.jpg'
+import course2 from '../assets/course2.jpg'
 import course3 from '../assets/course3.jpg'
 
 

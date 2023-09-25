@@ -9,11 +9,11 @@ import hero2 from '../assets/hero2.webp';
 import hero3 from '../assets/hero3.webp';
 import hero4 from '../assets/hero4.webp';
 import SectionTitle from './SectionTitle';
-import avatar1 from '../assets/avatar1.png'
-import avatar2 from '../assets/avatar2.png'
-import avatar3 from '../assets/avatar3.png'
-import course1 from '../assets/course1.png'
-import course2 from '../assets/course2.png'
+import avatar1 from '../assets/avatar1.jpg'
+import avatar2 from '../assets/avatar2.jpg'
+import avatar3 from '../assets/avatar3.jpg'
+import course1 from '../assets/course1.jpg'
+import course2 from '../assets/course2.jpg'
 import course3 from '../assets/course3.jpg'
 
 

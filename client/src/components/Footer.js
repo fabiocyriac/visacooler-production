@@ -1,10 +1,10 @@
-import logo from "../assets/logo.png";
+import logo from "../assets/logo.jpg";
 
 // social icons
-import fb from '../assets/facebook.png'
-import insta from '../assets/instagram.png'
-import twiteer from '../assets/twiter.png'
-import linkdin from '../assets/linkedIn.png'
+import fb from '../assets/facebook.jpg'
+import insta from '../assets/instagram.jpg'
+import twiteer from '../assets/twiter.jpg'
+import linkdin from '../assets/linkedIn.jpg'
 
 const Footer = () => {
   return (
