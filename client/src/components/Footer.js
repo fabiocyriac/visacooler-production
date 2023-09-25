@@ -8,7 +8,7 @@ import linkdin from '../assets/linkedIn.jpg'
 
 const Footer = () => {
   return (
-    <div className="bg-primary md:px-14 p-4 max-w-screen-2xl mx-auto">
+    <div className="bg-primary md:px-14 p-4 max-w-full mx-auto">
       <div className="my-12 text-white flex flex-col md:flex-row gap-10">
         <div className="md:w-1/2 space-y-8">
           <a
