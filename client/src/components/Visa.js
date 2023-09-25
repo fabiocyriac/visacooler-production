@@ -1,7 +1,9 @@
 import moment from 'moment'
 import { FaLocationArrow, FaBriefcase, FaCalendarAlt } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
-import { useAppContext } from '../context/appContext'
+import { useDispatch } from 'react-redux'
+import { setEditVisa } from '../redux/features/visa/visaSlice'
+import { deleteVisa } from '../redux/features/visa/visaService'
 import Wrapper from '../assets/wrappers/Visa'
 import VisaInfo from './VisaInfo'
 
@@ -14,7 +16,7 @@ const Visa = ({
   createdAt,
   status,
 }) => {
-  const { setEditVisa, deleteVisa } = useAppContext()
+  const dispatch = useDispatch()
 
   let date = moment(createdAt)
   date = date.format('MMM Do, YYYY')
@@ -44,14 +46,14 @@ const Visa = ({
             <Link
               to='/apply-visa'
               className='btn edit-btn'
-              onClick={() => setEditVisa(_id)}
+              onClick={() => dispatch(setEditVisa(_id))}
             >
               Apply
             </Link>
             <button
               type='button'
               className='btn delete-btn'
-              onClick={() => deleteVisa(_id)}
+              onClick={() => dispatch(deleteVisa(_id))}
             >
               Delete
             </button>

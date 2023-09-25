@@ -1,23 +1,22 @@
 import { FormRow, FormRowSelect } from '.';
-import { useAppContext } from '../context/appContext';
+import { useSelector, useDispatch } from 'react-redux'
+import { handleChange } from '../redux/features/visa/visaSlice';
 import Wrapper from '../assets/wrappers/SearchContainer';
 import { useState, useMemo } from 'react';
 const SearchContainer = () => {
   const [localSearch, setLocalSearch] = useState('');
   const {
     isLoading,
-    search,
-    searchStatus,
     searchType,
     sort,
     sortOptions,
-    handleChange,
     clearFilters,
     visaTypeOptions,
-    statusOptions,
-  } = useAppContext();
+  } = useSelector( state => state.visa);
+  const dispatch = useDispatch()
+
   const handleSearch = (e) => {
-    handleChange({ name: e.target.name, value: e.target.value });
+    dispatch(handleChange({ name: e.target.name, value: e.target.value }));
   };
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -30,7 +29,7 @@ const SearchContainer = () => {
       setLocalSearch(e.target.value);
       clearTimeout(timeoutID);
       timeoutID = setTimeout(() => {
-        handleChange({ name: e.target.name, value: e.target.value });
+        dispatch(handleChange({ name: e.target.name, value: e.target.value }));
       }, 1000);
     };
   };

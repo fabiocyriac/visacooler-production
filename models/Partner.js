@@ -1,4 +1,6 @@
 import mongoose from 'mongoose'
+import validator from 'validator'
+
 
 const PartnerSchema = new mongoose.Schema(
   {
@@ -7,18 +9,29 @@ const PartnerSchema = new mongoose.Schema(
       required: [true, 'Please provide partnerName'],
       maxlength: 50,
     },
-    logo: {
+    email: {
+      type: String,
+      required: [true, 'Please provide email'],
+      validate: {
+        validator: validator.isEmail,
+        message: 'Please provide a valid email',
+      },
+      unique: true,
+    },
+    company: {
       type: String,
       maxlength: 100,
     },
-    description: {
-      type: String,
-      maxlength: 100,
-    },
-    isActive: {
+    phone: {
       type: Boolean,
+      required: [true, 'Please provide Phone Number'],
       default: false
-    }
+    },
+    status: {
+      type: String,
+      required: true,
+      default: "pending",
+    },
   },
   { timestamps: true }
 )

@@ -1,13 +1,16 @@
 import { FormRow, FormRowSelect, Alert } from '../../components'
-import { useAppContext } from '../../context/appContext'
+import { useSelector, useDispatch } from 'react-redux';
+import { displayAlert } from '../../redux/features/util/utilSlice';
+import { editVisa, createVisa } from '../../redux/features/visa/visaService';
+import { handleChange, clearValues } from '../../redux/features/visa/visaSlice';
 import Wrapper from '../../assets/wrappers/DashboardFormPage'
 
 const ApplyVisa = () => {
+
   const {
     isLoading,
     isEditing,
     showAlert,
-    displayAlert,
     caseManager,
     country,
     visaLocation,
@@ -15,29 +18,26 @@ const ApplyVisa = () => {
     visaTypeOptions,
     status,
     statusOptions,
-    handleChange,
-    clearValues,
-    createVisa,
-    editVisa,
-  } = useAppContext()
+  } = useSelector(state => state.visa)
+  const dispatch = useDispatch()
 
   const handleSubmit = (e) => {
     e.preventDefault()
 
     if (!caseManager || !country || !visaLocation) {
-      displayAlert()
+      dispatch(displayAlert())
       return
     }
     if (isEditing) {
-      editVisa()
+      dispatch(editVisa())
       return
     }
-    createVisa()
+    dispatch(createVisa())
   }
   const handleVisaInput = (e) => {
     const name = e.target.name
     const value = e.target.value
-    handleChange({ name, value })
+    dispatch(handleChange({ name, value }))
   }
 
   return (
@@ -97,7 +97,7 @@ const ApplyVisa = () => {
               className='btn btn-block clear-btn'
               onClick={(e) => {
                 e.preventDefault()
-                clearValues()
+                dispatch(clearValues())
               }}
             >
               clear

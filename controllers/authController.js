@@ -24,8 +24,7 @@ const register = async (req, res) => {
       lastName: user.lastName,
       location: user.location,
       name: user.name,
-    },
-    location: user.location,
+    }
   });
 };
 
@@ -47,7 +46,7 @@ const login = async (req, res) => {
   attachCookie({ res, token });
   user.password = undefined;
 
-  res.status(StatusCodes.OK).json({ user, location: user.location });
+  res.status(StatusCodes.OK).json(user);
 };
 
 const updateUser = async (req, res) => {
@@ -67,20 +66,21 @@ const updateUser = async (req, res) => {
   const token = user.createJWT();
   attachCookie({ res, token });
 
-  res.status(StatusCodes.OK).json({ user, location: user.location });
+  res.status(StatusCodes.OK).json(user);
 };
 
 const getCurrentUser = async (req, res) => {
   const user = await User.findOne({ _id: req.user.userId });
-  res.status(StatusCodes.OK).json({ user, location: user.location });
+  res.status(StatusCodes.OK).json(user);
 };
 
 const logout = async (req, res) => {
+  const user = null;
   res.cookie('token', 'logout', {
     httpOnly: true,
     expires: new Date(Date.now() + 1000),
   });
-  res.status(StatusCodes.OK).json({ msg: 'user logged out!' });
+  res.status(StatusCodes.OK).json(user);
 };
 
 export { register, login, updateUser, getCurrentUser, logout };

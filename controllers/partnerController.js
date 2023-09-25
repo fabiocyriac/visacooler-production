@@ -1,113 +1,61 @@
 import Partner from '../models/Partner.js';
 import { StatusCodes } from 'http-status-codes';
-import {
-  BadRequestError,
-  NotFoundError,
-} from '../errors/index.js';
+import { BadRequestError, NotFoundError } from '../errors/index.js';
 import checkPermissions from '../utils/checkPermissions.js';
 
 const createPartner = async (req, res) => {
-  const { name, logo } = req.body;
-
-  if (!name || !logo) {
+  const { name, email, company, phone } = req.body;
+  if (!name || !email || !company || !phone) {
     throw new BadRequestError('Please provide all values');
   }
+  req.body.status = "pending";
   const partner = await Partner.create(req.body);
   res.status(StatusCodes.CREATED).json({ partner });
 };
 
-
 const getAllPartners = async (req, res) => {
-  const { status, visaType, sort, search } = req.query;
-
-  const queryObject = {
-    createdBy: req.user.userId,
-  };
-  // add stuff based on condition
-
-  if (status && status !== 'all') {
-    queryObject.status = status;
-  }
-  if (visaType && visaType !== 'all') {
-    queryObject.visaType = visaType;
-  }
-  if (search) {
-    queryObject.caseManager = { $regex: search, $options: 'i' };
-  }
-  // NO AWAIT
-
-  let result = Visa.find(queryObject);
-
-  // chain sort conditions
-
-  if (sort === 'latest') {
-    result = result.sort('-createdAt');
-  }
-  if (sort === 'oldest') {
-    result = result.sort('createdAt');
-  }
-  if (sort === 'a-z') {
-    result = result.sort('caseManager');
-  }
-  if (sort === 'z-a') {
-    result = result.sort('-caseManager');
-  }
-
-  //
-
-  // setup pagination
-  const page = Number(req.query.page) || 1;
-  const limit = Number(req.query.limit) || 10;
-  const skip = (page - 1) * limit;
-
-  result = result.skip(skip).limit(limit);
-
-  const visas = await result;
-
-  const totalVisas = await Visa.countDocuments(queryObject);
-  const numOfPages = Math.ceil(totalVisas / limit);
-
-  res.status(StatusCodes.OK).json({ visas, totalVisas, numOfPages });
+  const partners = await Partner.find({});
+  res.status(StatusCodes.OK).json({ partners });
 };
 
 const updatePartner = async (req, res) => {
-  const { id: visaId } = req.params;
-  const { country, caseManager } = req.body;
+  const { id: partnerId } = req.params;
+  const { name, email, company, phone, status } = req.body;
 
-  if (!caseManager || !country) {
+  if (!name || !email || !company || !phone || !status) {
     throw new BadRequestError('Please provide all values');
   }
-  const visa = await Visa.findOne({ _id: visaId });
+  const partner = await Visa.findOne({ _id: partnerId });
 
-  if (!visa) {
-    throw new NotFoundError(`No visa with id :${visaId}`);
+  if (!partner) {
+    throw new NotFoundError(`No partner with id :${partnerId}`);
   }
   // check permissions
 
-  checkPermissions(req.user, visa.createdBy);
+  //checkPermissions(req.user, visa.createdBy);
 
-  const updatedVisa = await Visa.findOneAndUpdate({ _id: visaId }, req.body, {
+  const updatedPartner = await Partner.findOneAndUpdate({ _id: partnerId }, req.body, {
     new: true,
     runValidators: true,
   });
 
-  res.status(StatusCodes.OK).json({ updatedVisa });
+  res.status(StatusCodes.OK).json({ updatedPartner });
 };
 
 const deletePartner = async (req, res) => {
-  const { id: visaId } = req.params;
+  const { id: partnerId } = req.params;
 
-  const visa = await Visa.findOne({ _id: visaId });
+  const partner = await Partner.findOne({ _id: partnerId });
 
-  if (!visa) {
-    throw new NotFoundError(`No visa with id :${visaId}`);
+  if (!partner) {
+    throw new NotFoundError(`No visa with id :${partnerId}`);
   }
 
-  checkPermissions(req.user, visa.createdBy);
+  //checkPermissions(req.user, visa.createdBy);
 
-  await visa.remove();
+  await partner.remove();
 
-  res.status(StatusCodes.OK).json({ msg: 'Success! Visa removed' });
+  res.status(StatusCodes.OK).json({ msg: 'Success! Partner removed' });
 };
 
 

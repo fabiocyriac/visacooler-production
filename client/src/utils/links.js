@@ -1,16 +1,46 @@
-import { IoBarChartSharp } from 'react-icons/io5'
-import { MdQueryStats } from 'react-icons/md'
-import { FaWpforms } from 'react-icons/fa'
-import { ImProfile } from 'react-icons/im'
+export const links = [
+  { id: 1, text: 'home', path: 'home' },
+  { id: 2, text: 'about', path: 'about' },
+  { id: 3, text: 'tags', path: 'tags' },
+  { id: 4, text: 'products', path: 'products' },
+];
 
-const links = [
-  { id: 1, text: 'stats', path: '/', icon: <IoBarChartSharp /> },
-  { id: 2, text: 'all visas', path: 'all-visas', icon: <MdQueryStats /> },
-  { id: 3, text: 'my visa', path: 'all-visas', icon: <MdQueryStats /> },
-  { id: 4, text: 'profile', path: 'profile', icon: <ImProfile /> },
-  { id: 5, text: 'Messages', path: 'profile', icon: <ImProfile /> },
-  { id: 6, text: 'Immigration Documents', path: 'profile', icon: <ImProfile /> },
-  { id: 7, text: 'Add visa (Admin)', path: 'apply-visa', icon: <FaWpforms /> },
+export const userMenu = [
+  { id: 1, text: 'stats', path: '/' },
+  { id: 2, text: 'visas', path: 'all-visas' },
+  { id: 3, text: 'my visa', path: 'my-visas' },
+  { id: 4, text: 'profile', path: 'profile' },
+  { id: 5, text: 'Messages', path: 'messages' },
+  { id: 6, text: 'Documents', path: 'documents' },
+  { id: 7, text: 'Add visa', path: 'apply-visa' },
+];
+
+export const adminMenu = [
+  { id: 1, text: 'stats', path: '/' },
+  { id: 2, text: 'visas', path: 'all-visas' },
+  { id: 3, text: 'my visa', path: 'my-visas' },
+  { id: 4, text: 'profile', path: 'profile' },
+  { id: 5, text: 'Messages', path: 'messages' },
+  { id: 6, text: 'Documents', path: 'documents' },
+  { id: 7, text: 'Add visa', path: 'apply-visa' },
+];
+
+export const partnerMenu = [
+  { id: 1, text: 'stats', path: '/' },
+  { id: 2, text: 'visas', path: 'all-visas' },
+  { id: 3, text: 'my visa', path: 'my-visas' },
+  { id: 4, text: 'profile', path: 'profile' },
+  { id: 5, text: 'Messages', path: 'messages' },
+  { id: 6, text: 'Documents', path: 'documents' },
+  { id: 7, text: 'Add visa', path: 'apply-visa' },
+];
+
+export const partnerAdminMenu = [
+  { id: 1, text: 'stats', path: '/' },
+  { id: 2, text: 'visas', path: 'all-visas' },
+  { id: 3, text: 'my visa', path: 'my-visas' },
+  { id: 4, text: 'profile', path: 'profile' },
+  { id: 5, text: 'Messages', path: 'messages' },
+  { id: 6, text: 'Documents', path: 'documents' },
+  { id: 7, text: 'Add visa', path: 'apply-visa' },
 ]
-
-export default links

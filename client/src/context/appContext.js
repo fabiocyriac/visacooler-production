@@ -181,6 +181,7 @@ const AppProvider = ({ children }) => {
   const clearValues = () => {
     dispatch({ type: CLEAR_VALUES });
   };
+  
   const createVisa = async () => {
     dispatch({ type: CREATE_VISA_BEGIN });
     try {
@@ -232,6 +233,7 @@ const AppProvider = ({ children }) => {
   const setEditVisa = (id) => {
     dispatch({ type: SET_EDIT_VISA, payload: { id } });
   };
+
   const editVisa = async () => {
     dispatch({ type: EDIT_VISA_BEGIN });
 
@@ -307,9 +309,7 @@ const AppProvider = ({ children }) => {
       logoutUser();
     }
   };
-  useEffect(() => {
-    getCurrentUser();
-  }, []);
+
 
   return (
     <AppContext.Provider

@@ -37,10 +37,17 @@ const UserSchema = new mongoose.Schema({
     maxlength: 20,
     default: 'my city',
   },
-  partnerId: {
-    type: mongoose.Types.ObjectId,
-    ref: 'Partner',
-    required: [true, 'Please provide partner'],
+  isAdmin: {
+    type: Boolean,
+    default: false,
+  },
+  isPartner: {
+    type: Boolean,
+    default: false,
+  },
+  isPartnerAdmin: {
+    type: Boolean,
+    default: false,
   },
 })
 

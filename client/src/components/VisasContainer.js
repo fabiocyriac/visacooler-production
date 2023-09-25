@@ -1,5 +1,6 @@
-import { useAppContext } from '../context/appContext';
+import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
+import { getVisas } from '../redux/features/visa/visaService';
 import Loading from './Loading';
 import Visa from './Visa';
 import Alert from './Alert';
@@ -7,8 +8,8 @@ import Wrapper from '../assets/wrappers/VisasContainer';
 import PageBtnContainer from './PageBtnContainer';
 
 const VisasContainer = () => {
+
   const {
-    getVisas,
     visas,
     isLoading,
     page,
@@ -19,9 +20,11 @@ const VisasContainer = () => {
     sort,
     numOfPages,
     showAlert,
-  } = useAppContext();
+  } = useSelector(state => state.visa);
+  const dispatch = useDispatch()
+
   useEffect(() => {
-    getVisas();
+    dispatch(getVisas());
     // eslint-disable-next-line
   }, [page, search, searchStatus, searchType, sort]);
   if (isLoading) {

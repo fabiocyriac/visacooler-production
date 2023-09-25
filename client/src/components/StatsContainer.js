@@ -1,4 +1,4 @@
-import { useAppContext } from '../context/appContext'
+import { useSelector } from 'react-redux'
 import StatItem from './StatItem'
 import { FaSuitcaseRolling, FaCalendarCheck, FaBug } from 'react-icons/fa'
 import { RiFlightTakeoffLine } from 'react-icons/ri'
@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom'
 
 
 const StatsContainer = () => {
-  const { stats } = useAppContext()
+  const { stats } = useSelector(state => state.visa)
 
   const defaultStats = [
     {

@@ -8,10 +8,9 @@ import {
   updatePartner,
 } from '../controllers/partnerController.js';
 
-import testUser from '../middleware/testUser.js';
-
-router.route('/').post(testUser, createPartner).get(getAllPartners);
-// remember about :id
-router.route('/:id').delete(testUser, deletePartner).patch(testUser, updatePartner);
+router.route('/').get(getAllPartners);
+router.route('/register').post(createPartner);
+router.route('/update').patch(updatePartner);
+router.route('/:id').delete(deletePartner).patch(updatePartner);
 
 export default router;

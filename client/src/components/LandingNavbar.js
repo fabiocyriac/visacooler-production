@@ -1,11 +1,11 @@
 import { NavLink } from 'react-router-dom';
 import Wrapper from '../assets/wrappers/LandingNavbar';
 import { Navigate } from 'react-router-dom';
-import { useAppContext } from '../context/appContext';
+import { useSelector } from 'react-redux'
 import React from 'react';
 
 const Navbar = () => {
-  const { user } = useAppContext()
+  const { user } = useSelector(state => state.user)
 
   return (
     <React.Fragment>

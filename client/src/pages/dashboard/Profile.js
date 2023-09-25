@@ -1,10 +1,14 @@
 import { useState } from 'react'
 import { FormRow, Alert } from '../../components'
-import { useAppContext } from '../../context/appContext'
+import { useSelector, useDispatch } from 'react-redux'
+import { displayAlert } from '../../redux/features/util/utilSlice'
+import { updateUser } from '../../redux/features/user/userService'
 import Wrapper from '../../assets/wrappers/DashboardFormPage'
 const Profile = () => {
-  const { user, showAlert, displayAlert, updateUser, isLoading } =
-    useAppContext()
+  const { user, showAlert, isLoading } =
+    useSelector(state => state.user)
+
+  const dispatch = useDispatch()
 
   const [name, setName] = useState(user?.name)
   const [email, setEmail] = useState(user?.email)
@@ -18,17 +22,17 @@ const Profile = () => {
   const [dateofbirth, setDateofbirth] = useState(user?.dateofbirth)
   const [phonenumber, setPhonenumber] = useState(user?.phonenumber)
 
-  
+
 
 
 
   const handleSubmit = (e) => {
     e.preventDefault()
     if (!name || !email || !lastName || !location) {
-      displayAlert()
+      dispatch(displayAlert())
       return
     }
-    updateUser({ name, email, lastName, location })
+    dispatch(updateUser({ name, email, lastName, location }))
   }
 
   return (
@@ -97,22 +101,22 @@ const Profile = () => {
             value={relationshipstatus}
             handleChange={(e) => setRelationshipstatus(e.target.value)}
           />
-                    <FormRow
+          <FormRow
             type='text'
             labelText='date of birth'
             name='dateofbirth'
             value={dateofbirth}
             handleChange={(e) => setDateofbirth(e.target.value)}
           />
-                    <FormRow
+          <FormRow
             type='text'
             labelText='phone number'
             name='phonenumber'
             value={phonenumber}
             handleChange={(e) => setPhonenumber(e.target.value)}
           />
-    
-        <FormRow
+
+          <FormRow
             type='text'
             name='name'
             value={name}
@@ -172,14 +176,14 @@ const Profile = () => {
             value={relationshipstatus}
             handleChange={(e) => setRelationshipstatus(e.target.value)}
           />
-                    <FormRow
+          <FormRow
             type='text'
             labelText='date of birth'
             name='dateofbirth'
             value={dateofbirth}
             handleChange={(e) => setDateofbirth(e.target.value)}
           />
-                    <FormRow
+          <FormRow
             type='text'
             labelText='phone number'
             name='phonenumber'

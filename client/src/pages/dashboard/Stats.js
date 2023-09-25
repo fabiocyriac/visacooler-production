@@ -1,12 +1,13 @@
 import { useEffect } from 'react'
-import { useAppContext } from '../../context/appContext'
+import { useSelector, useDispatch } from 'react-redux'
+import { showStats } from '../../redux/features/visa/visaService'
 import { StatsContainer, Loading, ChartsContainer } from '../../components'
 
 const Stats = () => {
-  const { showStats, isLoading, monthlyApplications } = useAppContext()
-
+  const { isLoading, monthlyApplications } = useSelector(state => state.visa);
+  const dispatch = useDispatch();
   useEffect(() => {
-    showStats()
+    dispatch(showStats());
     // eslint-disable-next-line
   }, [])
   if (isLoading) {

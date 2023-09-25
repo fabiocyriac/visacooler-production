@@ -1,28 +1,23 @@
-import links from '../utils/links';
+import { useSelector } from 'react-redux';
+import { links, userMenu, adminMenu, partnerMenu, partnerAdminMenu } from '../utils/links';
 import { NavLink } from 'react-router-dom';
 
-const NavLinks = ({ toggleSidebar }) => {
+const NavLinks = () => {
+  const { user } = useSelector(state => state.user)
+  const SidebarMenu = !user ? links : user?.isAdmin ? adminMenu : user?.isPartner ? partnerMenu : user?.isPartnerAdmin ? partnerAdminMenu : userMenu
   return (
-    <div className='nav-links'>
-      {links.map((link) => {
-        const { text, path, id, icon } = link;
-
+    <>
+      {SidebarMenu.map((link) => {
+        const { id, path, text } = link;
         return (
-          <NavLink
-            to={path}
-            key={id}
-            onClick={toggleSidebar}
-            className={({ isActive }) =>
-              isActive ? 'nav-link active' : 'nav-link'
-            }
-            end
-          >
-            <span className='icon'>{icon}</span>
-            {text}
-          </NavLink>
+          <li key={id}>
+            <NavLink className='capitalize' to={path}>
+              {text}
+            </NavLink>
+          </li>
         );
       })}
-    </div>
+    </>
   );
 };
 
