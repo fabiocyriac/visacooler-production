@@ -1,5 +1,5 @@
 import { Routes, Route, Navigate } from "react-router-dom"
-import { Login, Register, Landing, About, Partner, Error, Products } from './pages/landing'
+import { Login, Register, Landing, About, Partner, Error, Products, Tags } from './pages/landing'
 import { ProtectedRoute, PublicRoute } from "./components"
 
 import {
@@ -21,7 +21,7 @@ function MainRoutes() {
       <Route element={<PublicRoute />}>
         <Route path='/home' element={<Landing />} />
         <Route path='/about' element={<About />} />
-        <Route path='/tags' element={<Partner />} />
+        <Route path='/tags' element={<Tags />} />
         <Route path='/products' element={<Products />} />
       </Route>
       <Route path='/login' element={<Login />} />

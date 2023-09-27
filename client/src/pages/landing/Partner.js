@@ -55,10 +55,10 @@ const Login = () => {
         <FormInput type='phone' label='phone' name='phone' value={values.phone} handleChange={handleChange} />
         <div className='mt-4'>
           <button type='submit' className='btn btn-primary btn-block' disabled={isLoading}>
-            Login
+            Submit
           </button>
         </div>
-        <p className='text-center'>Make an easy move to Visax today. We use the contact information you provide to us to contact you about our products and services</p>
+        <p className='text-center text-xs'>Make an easy move to Visax today. We use the contact information you provide to us to contact you about our products and services</p>
       </form>
     </section>
   );

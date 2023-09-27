@@ -4,12 +4,11 @@ import About from '../../components/landing/About'
 import Pricing from '../../components/landing/Pricing'
 import Newsletter from '../../components/landing/Newsletter'
 
-const AboutPage = () => {
+const Tags = () => {
   return (
     <>
-      <About/>
-      <Pricing/>
+      <Feature/>
     </>
   );
 };
-export default AboutPage;
+export default Tags;

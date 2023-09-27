@@ -5,4 +5,5 @@ import Error from './Error'
 import Login from './Login'
 import Register from './Register'
 import Products from './Products'
-export { Landing, About, Partner,  Error, Login, Register, Products }
+import Tags from './Tags'
+export { Landing, About, Partner,  Error, Login, Register, Products, Tags }

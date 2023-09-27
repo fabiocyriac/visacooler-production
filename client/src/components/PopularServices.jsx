@@ -15,7 +15,10 @@ import avatar3 from '../assets/avatar3.jpg'
 import course1 from '../assets/course1.jpg'
 import course2 from '../assets/course2.jpg'
 import course3 from '../assets/course3.jpg'
-
+// motion
+import { motion } from "framer-motion";
+// variants
+import { fadeIn } from "../variants";
 
 var settings = {
   dots: false,
@@ -204,136 +207,142 @@ const PopularServices = () => {
   ];
 
   return (
-    <div className='pt-24'>
-      <SectionTitle text='Popular Services' />
-      <div className='pt-12 gap-4'>
-        <Slider {...settings}>
-          {products.map((product) => {
-            const { title, price, image, country } = product.attributes;
-            const dollarsAmount = formatPrice(price);
-            return (
+    <motion.div
+      variants={fadeIn("up", 0.2)}
+      initial="hidden"
+      whileInView={"show"}
+      viewport={{ once: false, amount: 0.3 }}
+      className="w-full">
+      <div className='pt-24'>
+        <SectionTitle text='Popular Services' />
+        <div className='pt-12 gap-4'>
+          <Slider {...settings}>
+            {products.map((product) => {
+              const { title, price, image, country } = product.attributes;
+              const dollarsAmount = formatPrice(price);
+              return (
 
-              <div className="course-item group">
-                <div
-                  className="border border-gray-100 shadow-sm rounded mr-3 transition hover:shadow-md">
-                  <img src={image} alt="" className="w-full rounded rounded-b-none" />
-                  <div className="mt-3 p-3">
-                    <div className="flex justify-between">
-                      <div>
-                      <h2 className="text-lg font-bold">
-                        {title}
-                      </h2>
-                      <p className="text-sm text-gray-400 mt-2 font-medium">
-                        {country}
-                      </p>
-                      </div>
-                      <div>
-                        <span className="text-green-600 font-bold">
-                          Free
-                        </span>
-                      </div>
-                    </div>
-
-                    <div className="mt-4 mb-4 text-xs">
-                      <div className="flex mt-5 items-center">
-                        <img src={avatar1} alt="" className="w-8 h-8 rounded-full z-0" />
-                        <img src={avatar2} alt="" className="w-8 h-8 rounded-full z-10 -ml-4" />
-                        <img src={avatar3} alt="" className="w-8 h-8 rounded-full z-10 -ml-4" />
-                        <img src={avatar1} alt="" className="w-8 h-8 rounded-full z-10 -ml-4" />
-                        <div
-                          className="w-8 h-8 rounded-full bg-gray-100 z-10 text-gray-400 -ml-4 text-center pt-2">
-                          +2
+                <div className="course-item group">
+                  <div
+                    className="border border-gray-100 shadow-sm rounded mr-3 transition hover:shadow-md">
+                    <img src={image} alt="" className="w-full rounded rounded-b-none" />
+                    <div className="mt-3 p-3">
+                      <div className="flex justify-between">
+                        <div>
+                          <h2 className="text-lg font-bold">
+                            {title}
+                          </h2>
+                          <p className="text-sm text-gray-400 mt-2 font-medium">
+                            {country}
+                          </p>
                         </div>
-                        <div className="text-gray-400 ml-4">
-                          Student apply
+                        <div>
+                          <span className="text-green-600 font-bold">
+                            Free
+                          </span>
                         </div>
                       </div>
-                      <section id="categories" class="mt-8">
-                        <div class="container mx-auto">
-                        <h2 className="text-base mt-3 mb-3 font-medium">Tags:</h2>
 
-                          <div class="flex flex-row gap-4 items-center text-center flex-wrap pl-4 md:pl-0">
-                            <a class="cursor-pointer">
-                              <span className="bg-[#FFE7D2] text-[#FF8D3F] p-2 rounded text-[10px] font-bold">
-                                Python
-                              </span>
-                            </a>
-
-                            <a class="cursor-pointer">
-                              <span className="bg-[#FFE7D2] text-[#FF8D3F] p-2 rounded text-[10px] font-bold">
-                                Python
-                              </span>
-                            </a>
-
-                            <a class="cursor-pointer">
-                              <span className="bg-[#FFE7D2] text-[#FF8D3F] p-2 rounded text-[10px] font-bold">
-                                Python
-                              </span>
-                            </a>
-
-                            <a class="cursor-pointer">
-                              <span className="bg-[#FFE7D2] text-[#FF8D3F] p-2 rounded text-[10px] font-bold">
-                                Python
-                              </span>
-                            </a>
-
-                            <a class="cursor-pointer">
-                              <span className="bg-[#FFE7D2] text-[#FF8D3F] p-2 rounded text-[10px] font-bold">
-                                Python
-                              </span>
-                            </a>
-
-                            <a class="cursor-pointer">
-                              <span className="bg-[#FFE7D2] text-[#FF8D3F] p-2 rounded text-[10px] font-bold">
-                                Python
-                              </span>
-                            </a>
-
-                            <a class="cursor-pointer">
-                              <span className="bg-[#FFE7D2] text-[#FF8D3F] p-2 rounded text-[10px] font-bold">
-                                Python
-                              </span>
-                            </a>
-
-                            <a class="cursor-pointer">
-                              <span className="bg-[#FFE7D2] text-[#FF8D3F] p-2 rounded text-[10px] font-bold">
-                                Python
-                              </span>
-                            </a>
-
-                            <a class="cursor-pointer">
-                              <span className="bg-[#FFE7D2] text-[#FF8D3F] p-2 rounded text-[10px] font-bold">
-                                Python
-                              </span>
-                            </a>
-
-                            <a class="cursor-pointer">
-                              <span className="bg-[#FFE7D2] text-[#FF8D3F] p-2 rounded text-[10px] font-bold">
-                                Python
-                              </span>
-                            </a>
-
-                            <a class="cursor-pointer">
-                              <span className="bg-[#FFE7D2] text-[#FF8D3F] p-2 rounded text-[10px] font-bold">
-                                Python
-                              </span>
-                            </a>
-
+                      <div className="mt-4 mb-4 text-xs">
+                        <div className="flex mt-5 items-center">
+                          <img src={avatar1} alt="" className="w-8 h-8 rounded-full z-0" />
+                          <img src={avatar2} alt="" className="w-8 h-8 rounded-full z-10 -ml-4" />
+                          <img src={avatar3} alt="" className="w-8 h-8 rounded-full z-10 -ml-4" />
+                          <img src={avatar1} alt="" className="w-8 h-8 rounded-full z-10 -ml-4" />
+                          <div
+                            className="w-8 h-8 rounded-full bg-gray-100 z-10 text-gray-400 -ml-4 text-center pt-2">
+                            +2
+                          </div>
+                          <div className="text-gray-400 ml-4">
+                            Student apply
                           </div>
                         </div>
-                      </section>
+                        <section id="categories" class="mt-8">
+                          <div class="container mx-auto">
+                            <h2 className="text-base mt-3 mb-3 font-medium">Tags:</h2>
+
+                            <div class="flex flex-row gap-4 items-center text-center flex-wrap pl-4 md:pl-0">
+                              <a class="cursor-pointer">
+                                <span className="bg-[#FFE7D2] text-[#FF8D3F] p-2 rounded text-[10px] font-bold">
+                                  Python
+                                </span>
+                              </a>
+
+                              <a class="cursor-pointer">
+                                <span className="bg-[#FFE7D2] text-[#FF8D3F] p-2 rounded text-[10px] font-bold">
+                                  Python
+                                </span>
+                              </a>
+
+                              <a class="cursor-pointer">
+                                <span className="bg-[#FFE7D2] text-[#FF8D3F] p-2 rounded text-[10px] font-bold">
+                                  Python
+                                </span>
+                              </a>
+
+                              <a class="cursor-pointer">
+                                <span className="bg-[#FFE7D2] text-[#FF8D3F] p-2 rounded text-[10px] font-bold">
+                                  Python
+                                </span>
+                              </a>
+
+                              <a class="cursor-pointer">
+                                <span className="bg-[#FFE7D2] text-[#FF8D3F] p-2 rounded text-[10px] font-bold">
+                                  Python
+                                </span>
+                              </a>
+
+                              <a class="cursor-pointer">
+                                <span className="bg-[#FFE7D2] text-[#FF8D3F] p-2 rounded text-[10px] font-bold">
+                                  Python
+                                </span>
+                              </a>
+
+                              <a class="cursor-pointer">
+                                <span className="bg-[#FFE7D2] text-[#FF8D3F] p-2 rounded text-[10px] font-bold">
+                                  Python
+                                </span>
+                              </a>
+
+                              <a class="cursor-pointer">
+                                <span className="bg-[#FFE7D2] text-[#FF8D3F] p-2 rounded text-[10px] font-bold">
+                                  Python
+                                </span>
+                              </a>
+
+                              <a class="cursor-pointer">
+                                <span className="bg-[#FFE7D2] text-[#FF8D3F] p-2 rounded text-[10px] font-bold">
+                                  Python
+                                </span>
+                              </a>
+
+                              <a class="cursor-pointer">
+                                <span className="bg-[#FFE7D2] text-[#FF8D3F] p-2 rounded text-[10px] font-bold">
+                                  Python
+                                </span>
+                              </a>
+
+                              <a class="cursor-pointer">
+                                <span className="bg-[#FFE7D2] text-[#FF8D3F] p-2 rounded text-[10px] font-bold">
+                                  Python
+                                </span>
+                              </a>
+
+                            </div>
+                          </div>
+                        </section>
+
+                      </div>
 
                     </div>
-
                   </div>
                 </div>
-              </div>
-            );
-          })}
-        </Slider>
+              );
+            })}
+          </Slider>
+        </div>
       </div>
-    </div>
-
+    </motion.div>
   );
 };
 export default PopularServices;

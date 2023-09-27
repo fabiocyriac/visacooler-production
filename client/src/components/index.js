@@ -1,5 +1,4 @@
 import Alert from './Alert'
-import BigSidebar from './BigSidebar'
 import ChartsContainer from './ChartsContainer'
 import FormRow from './FormRow'
 import FormInput from './FormInput'
@@ -31,7 +30,6 @@ export {
   FormInput,
   Alert,
   Navbar,
-  BigSidebar,
   SmallSidebar,
   FormRowSelect,
   ProtectedRoute,
