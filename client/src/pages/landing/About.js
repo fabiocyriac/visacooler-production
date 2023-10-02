@@ -8,7 +8,6 @@ const AboutPage = () => {
   return (
     <>
       <About/>
-      <Pricing/>
     </>
   );
 };

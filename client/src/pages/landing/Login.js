@@ -56,8 +56,8 @@ const Login = () => {
         <FormInput type='password' label='password' name='password' value={values.password} handleChange={handleChange} />
         <div className='mt-4'>
           <button type='submit' className='btn btn-primary btn-block' disabled={isLoading}>
-            Login
-          </button>
+          Login
+        </button>
         </div>
         <p className='text-center'>Not a member yet?{' '}
           <Link to='/register' className='ml-2 link link-hover link-primary capitalize'>

@@ -17,6 +17,11 @@ nav{
     ;
 }
 
+p {
+  margin-top: 0;
+  margin-bottom: 0 !important;
+}
+
 @layer components {
   .align-element {
     @apply mx-auto max-w-6xl px-8;
@@ -35,4 +40,5 @@ nav{
   color: #000 !important;
   font-family: "Font Awesome 6 Free" !important;
   font-weight: 900 !important;
+  line-height: 0.75 !important;
 }

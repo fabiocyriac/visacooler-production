@@ -61,8 +61,8 @@ function SampleNextArrow(props) {
   const { className, style, onClick } = props;
   return (
     <div
-      className={className}
-      style={{ ...style, background: "#eee", width: "auto", height: "auto", padding: "10px", zIndex: "40", right: "-14px" }}
+      className={`btn-circle ${className}`}
+      style={{ ...style, background: "#eee", width: "auto", height: "auto", padding: "15px", zIndex: "40", right: "-14px" }}
       onClick={onClick}
     />
   );
@@ -72,8 +72,8 @@ function SamplePrevArrow(props) {
   const { className, style, onClick } = props;
   return (
     <div
-      className={className}
-      style={{ ...style, background: "#eee", width: "auto", height: "auto", padding: "10px", zIndex: "40" }}
+      className={`btn-circle ${className}`}
+      style={{ ...style, background: "#eee", width: "auto", height: "auto", padding: "15px", zIndex: "40" }}
       onClick={onClick}
     />
   );

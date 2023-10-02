@@ -22,7 +22,7 @@ const getAllProducts = async (req, res) => {
   }
   // NO AWAIT
 
-  let result = isObjectEmpty(queryObject)?  Visa.find() : Visa.find(queryObject);
+  let result = Visa.find(queryObject);
 
   // chain sort conditions
 

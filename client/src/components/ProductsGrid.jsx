@@ -13,11 +13,13 @@ const ProductsGrid = () => {
   return (
     <div className='pt-12 grid gap-4 md:grid-cols-2 lg:grid-cols-3'>
       {visas.map((visa) => {
-        const { country, visaType } = visa.attributes;
+        const { country, visaType, _id } = visa;
+        const users = [{ id: 1, name: "john" }, { id: 2, name: "charles" }];
         return (
           <Link
-            key={visa.id}
-            to={`/products/${visa.id}`}
+            key={_id}
+            to={{ pathname: `/products/${_id}`}}   
+            state= {{ visas: visa }}
             className='card w-full shadow-xl hover:shadow-2xl transition duration-300'>
             <figure className='px-4 pt-4'>
               <img
@@ -28,6 +30,9 @@ const ProductsGrid = () => {
             <div className='card-body items-center text-center'>
               <h2 className='card-title capitalize tracking-wider'>{country}</h2>
               <span className='text-secondary'>{visaType}</span>
+              <button className='btn btn-secondary btn-md'>
+                Apply Now
+              </button>
             </div>
           </Link>
         );

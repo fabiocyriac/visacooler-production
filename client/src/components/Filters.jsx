@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { handleChange, clearFilters } from '../redux/features/visa/visaSlice';
-import { getVisas } from '../redux/features/visa/visaService';
+import { getProducts } from '../redux/features/visa/visaService';
 import FormSelect from './FormSelect';
 
 
@@ -10,7 +10,7 @@ const Filters = () => {
 
     useEffect(() => {
         dispatch(clearFilters());
-        dispatch(getVisas());
+        dispatch(getProducts());
         // eslint-disable-next-line
       }, []);
 
@@ -32,7 +32,7 @@ const Filters = () => {
     };
     const handleSubmit = (e) => {
         e.preventDefault();
-        dispatch(getVisas());
+        dispatch(getProducts());
     };
 
     const handleReset = (e) => {

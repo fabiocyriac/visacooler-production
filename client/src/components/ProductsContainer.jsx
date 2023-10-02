@@ -8,15 +8,14 @@ import PageBtnContainer from './PageBtnContainer';
 
 const ProductsContainer = () => {
 
-  const { totalVisas, numOfPages } = useSelector( state => state.visa);
+  const { totalVisas, numOfPages } = useSelector(state => state.visa);
   const [layout, setLayout] = useState('grid');
 
   const setActiveStyles = (pattern) => {
-    return `text-xl btn btn-circle btn-sm ${
-      pattern === layout
+    return `text-xl btn btn-circle btn-sm ${pattern === layout
         ? 'btn-primary text-primary-content'
         : 'btn-ghost text-based-content'
-    }`;
+      }`;
   };
 
   return (
@@ -29,15 +28,16 @@ const ProductsContainer = () => {
         <div className='flex gap-x-2'>
           <button
             type='button'
-            onClick={() => setLayout('grid')}
-            className={setActiveStyles('grid')}
+            onClick={() => setLayout('list')}
+            className={setActiveStyles('list')}
           >
             <BsFillGridFill />
+
           </button>
           <button
             type='button'
-            onClick={() => setLayout('list')}
-            className={setActiveStyles('list')}
+            onClick={() => setLayout('grid')}
+            className={setActiveStyles('grid')}
           >
             <BsList />
           </button>
@@ -50,9 +50,9 @@ const ProductsContainer = () => {
             Sorry, no products matched your search...
           </h5>
         ) : layout === 'grid' ? (
-          <ProductsGrid />
-        ) : (
           <ProductsList />
+        ) : (
+          <ProductsGrid />
         )}
       </div>
       {numOfPages > 1 && <PageBtnContainer />}

@@ -12,11 +12,12 @@ const ProductsList = () => {
   return (
     <div className='mt-12 grid gap-y-8'>
       {visas.map((visa) => {
-        const { country, visaType, visaLocation } = visa.attributes;
+        const { country, visaType, visaLocation, _id } = visa;
         return (
           <Link
-            key={visa.id}
-            to={`/products/${visa.id}`}
+            key={_id}
+            to={{ pathname: `/products/${_id}` }}
+            state={{ visas: visa }}
             className='p-8 rounded-lg flex flex-col sm:flex-row gap-y-4 flex-wrap  bg-base-100 shadow-xl hover:shadow-2xl duration-300 group'>
             <img
               src={course1}
@@ -29,7 +30,16 @@ const ProductsList = () => {
               </h4>
             </div>
             <p className='font-medium ml-0 sm:ml-auto text-lg'>
-              {visaLocation}
+            <h4 className='capitalize text-md text-neutral-content'>
+              <h4></h4>
+                $200
+              </h4>
+              <button className='btn btn-secondary btn-md'>
+                Details
+              </button>
+              <button className='btn btn-secondary btn-md'>
+                Apply Now
+              </button>
             </p>
           </Link>
         );

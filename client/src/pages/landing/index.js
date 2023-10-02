@@ -6,4 +6,5 @@ import Login from './Login'
 import Register from './Register'
 import Products from './Products'
 import Tags from './Tags'
-export { Landing, About, Partner,  Error, Login, Register, Products, Tags }
+import SingleProduct from './SingleProduct'
+export { Landing, About, Partner,  Error, Login, Register, Products, Tags, SingleProduct }

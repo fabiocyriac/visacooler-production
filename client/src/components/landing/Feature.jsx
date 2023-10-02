@@ -19,7 +19,7 @@ const Feature = () => {
           viewport={{ once: false, amount: 0.3 }}
           className="w-full">
           <div className="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 items-start md:gap-12 gap-8">
-            <div className="bg-[rgba(255, 255, 255, 0.04)] rounded-[35px] h-96 shadow-3xl p-8 items-center flex justify-center cursor-pointer hover:-translate-y-4 transition-all duration-300">
+          <div className="bg-[rgba(255, 255, 255, 0.04)] rounded-[35px] h-64  shadow-3xl p-8 items-center flex justify-center cursor-pointer hover:-translate-y-4 transition-all duration-300">
               <div>
                 <img src={featureImg} alt="" />
                 <h5 className="text-2xl font-semibold text-primary px-5 text-center mt-5">
@@ -27,15 +27,8 @@ const Feature = () => {
                 </h5>
               </div>
             </div>
-            <div className="bg-[rgba(255, 255, 255, 0.04)] rounded-[35px] h-96  shadow-3xl p-8 items-center flex justify-center cursor-pointer hover:-translate-y-4 transition-all duration-300">
-              <div>
-                <img src={featureImg} alt="" />
-                <h5 className="text-2xl font-semibold text-primary px-5 text-center mt-5">
-                  LeapScholar
-                </h5>
-              </div>
-            </div>
-            <div className="bg-[rgba(255, 255, 255, 0.04)] rounded-[35px] h-96  shadow-3xl p-8 items-center flex justify-center cursor-pointer hover:-translate-y-4 transition-all duration-300">
+
+            <div className="bg-[rgba(255, 255, 255, 0.04)] rounded-[35px] h-64  shadow-3xl p-8 items-center flex justify-center cursor-pointer hover:-translate-y-4 transition-all duration-300">
               <div>
                 <img src={featureImg} alt="" />
                 <h5 className="text-2xl font-semibold text-primary px-5 text-center mt-5">
@@ -43,7 +36,7 @@ const Feature = () => {
                 </h5>
               </div>
             </div>
-            <div className="bg-[rgba(255, 255, 255, 0.04)] rounded-[35px] h-96  shadow-3xl p-8 items-center flex justify-center cursor-pointer hover:-translate-y-4 transition-all duration-300">
+            <div className="bg-[rgba(255, 255, 255, 0.04)] rounded-[35px] h-64  shadow-3xl p-8 items-center flex justify-center cursor-pointer hover:-translate-y-4 transition-all duration-300">
               <div>
                 <img src={featureImg} alt="" />
                 <h5 className="text-2xl font-semibold text-primary px-5 text-center mt-5">
@@ -51,7 +44,7 @@ const Feature = () => {
                 </h5>
               </div>
             </div>
-            <div className="bg-[rgba(255, 255, 255, 0.04)] rounded-[35px] h-96 shadow-3xl p-8 items-center flex justify-center cursor-pointer hover:-translate-y-4 transition-all duration-300">
+            <div className="bg-[rgba(255, 255, 255, 0.04)] rounded-[35px] h-64 shadow-3xl p-8 items-center flex justify-center cursor-pointer hover:-translate-y-4 transition-all duration-300">
               <div>
                 <img src={featureImg} alt="" />
                 <h5 className="text-2xl font-semibold text-primary px-5 text-center mt-5">
@@ -59,15 +52,7 @@ const Feature = () => {
                 </h5>
               </div>
             </div>
-            <div className="bg-[rgba(255, 255, 255, 0.04)] rounded-[35px] h-96  shadow-3xl p-8 items-center flex justify-center cursor-pointer hover:-translate-y-4 transition-all duration-300">
-              <div>
-                <img src={featureImg} alt="" />
-                <h5 className="text-2xl font-semibold text-primary px-5 text-center mt-5">
-                  Studyportals
-                </h5>
-              </div>
-            </div>
-            <div className="bg-[rgba(255, 255, 255, 0.04)] rounded-[35px] h-96  shadow-3xl p-8 items-center flex justify-center cursor-pointer hover:-translate-y-4 transition-all duration-300">
+            <div className="bg-[rgba(255, 255, 255, 0.04)] rounded-[35px] h-64  shadow-3xl p-8 items-center flex justify-center cursor-pointer hover:-translate-y-4 transition-all duration-300">
               <div>
                 <img src={featureImg} alt="" />
                 <h5 className="text-2xl font-semibold text-primary px-5 text-center mt-5">
@@ -75,7 +60,23 @@ const Feature = () => {
                 </h5>
               </div>
             </div>
-            <div className="bg-[rgba(255, 255, 255, 0.04)] rounded-[35px] h-96  shadow-3xl p-8 items-center flex justify-center cursor-pointer hover:-translate-y-4 transition-all duration-300">
+            <div className="bg-[rgba(255, 255, 255, 0.04)] rounded-[35px] h-64  shadow-3xl p-8 items-center flex justify-center cursor-pointer hover:-translate-y-4 transition-all duration-300">
+              <div>
+                <img src={featureImg} alt="" />
+                <h5 className="text-2xl font-semibold text-primary px-5 text-center mt-5">
+                  StudyLinks
+                </h5>
+              </div>
+            </div>
+            <div className="bg-[rgba(255, 255, 255, 0.04)] rounded-[35px] h-64  shadow-3xl p-8 items-center flex justify-center cursor-pointer hover:-translate-y-4 transition-all duration-300">
+              <div>
+                <img src={featureImg} alt="" />
+                <h5 className="text-2xl font-semibold text-primary px-5 text-center mt-5">
+                  StudyLinks
+                </h5>
+              </div>
+            </div>
+            <div className="bg-[rgba(255, 255, 255, 0.04)] rounded-[35px] h-64  shadow-3xl p-8 items-center flex justify-center cursor-pointer hover:-translate-y-4 transition-all duration-300">
               <div>
                 <img src={featureImg} alt="" />
                 <h5 className="text-2xl font-semibold text-primary px-5 text-center mt-5">

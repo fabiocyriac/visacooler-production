@@ -1,5 +1,5 @@
 import { createSlice, isAnyOf } from '@reduxjs/toolkit'
-import { showStats, getVisas, createVisa, editVisa, deleteVisa } from './visaService'
+import { showStats, getVisas, createVisa, editVisa, deleteVisa, getProducts } from './visaService'
 
 const initialState = {
     showAlert: false,
@@ -80,7 +80,13 @@ const visaSlice = createSlice({
             state.totalVisas = action.payload.totalVisas
             state.numOfPages = action.payload.numOfPages
         })
-        builder.addMatcher(isAnyOf(showStats.pending, getVisas.pending, createVisa.pending, editVisa.pending, deleteVisa.pending), state => {
+        builder.addCase(getProducts.fulfilled, (state, action) => {
+            state.isLoading = false
+            state.visas = action.payload.visas
+            state.totalVisas = action.payload.totalVisas
+            state.numOfPages = action.payload.numOfPages
+        })
+        builder.addMatcher(isAnyOf(showStats.pending, getVisas.pending, getProducts.pending, createVisa.pending, editVisa.pending, deleteVisa.pending), state => {
             state.isLoading = true
             state.showAlert = false
         })
@@ -90,7 +96,7 @@ const visaSlice = createSlice({
             state.alertType = 'success'
             state.alertText = 'New Visa Created/Updated!'
         })
-        builder.addMatcher(isAnyOf(showStats.rejected, getVisas.rejected, createVisa.rejected, editVisa.rejected, deleteVisa.rejected), (state, action) => {
+        builder.addMatcher(isAnyOf(showStats.rejected, getVisas.rejected, getProducts.rejected, createVisa.rejected, editVisa.rejected, deleteVisa.rejected), (state, action) => {
             state.isLoading = false
             state.showAlert = true
             state.alertType = 'danger'
