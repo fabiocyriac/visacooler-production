@@ -23,6 +23,7 @@ import Hero from './Hero'
 import Filters from './Filters'
 import PaginationContainer from './PaginationContainer'
 import ProductsContainer from './ProductsContainer'
+import FormSelect from './FormSelect'
 export {
   AdminRoute,
   Logo,
@@ -49,4 +50,5 @@ export {
   Filters,
   PaginationContainer,
   ProductsContainer,
+  FormSelect,
 }

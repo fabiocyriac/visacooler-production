@@ -21,7 +21,7 @@ export const getVisas = createAsyncThunk('visa/getVisas', (arg, { getState }) =>
 
 export const getProducts = createAsyncThunk('visa/getProducts', (arg, { getState }) => {
     const state = getState();
-    let url = `/api/v1/products?page=${state.visa.page}&status=${state.visa.searchStatus}&visaType=${state.visa.searchType}&sort=${state.visa.sort}`;
+    let url = `/api/v1/products?page=${state.visa.page}&country=${state.visa.searchCountry}&visaType=${state.visa.searchType}&sort=${state.visa.sort}`;
     if (state.visa.search) {
         url = url + `&search=${state.visa.search}`;
     }
@@ -32,14 +32,13 @@ export const getProducts = createAsyncThunk('visa/getProducts', (arg, { getState
 
 export const createVisa = createAsyncThunk('visa/createVisa', (arg, { getState }) => {
     const state = getState();
-    const { caseManager, country, visaLocation, visaType, status } = state.visa;
+    const { country, description, visaType, price } = state.visa;
     return axios
         .post('/api/v1/visas', {
-            caseManager,
             country,
-            visaLocation,
+            description,
             visaType,
-            status,
+            price,
         })
         .then(response => response.data)
 })

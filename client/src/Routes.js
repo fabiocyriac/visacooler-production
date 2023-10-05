@@ -14,7 +14,8 @@ function MainRoutes() {
     <Routes>
       <Route element={<ProtectedRoute />}>
         <Route index element={<Stats />} />
-        <Route path='all-visas' element={<AllVisas />} />
+        <Route path='products' element={<Products />} />
+        <Route path='/products/:id' element={<SingleProduct />} />
         <Route path='apply-visa' element={<ApplyVisa />} />
         <Route path='profile' element={<Profile />} />
       </Route>

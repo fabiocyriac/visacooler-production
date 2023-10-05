@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { formatPrice } from '../utils';
 import { useSelector } from 'react-redux'
 import course1 from '../assets/course1.jpg'
+import category7 from '../assets/icons/python.png';
 import course2 from '../assets/course2.jpg'
 import course3 from '../assets/course3.jpg'
 
@@ -23,8 +24,8 @@ const ProductsGrid = () => {
             className='card w-full shadow-xl hover:shadow-2xl transition duration-300'>
             <figure className='px-4 pt-4'>
               <img
-                src={course1}
-                className='rounded-xl h-64 md:h-48 w-full object-cover'
+                src={category7}
+                className='rounded-xl h-40 md:h-32 object-cover'
               />
             </figure>
             <div className='card-body items-center text-center'>

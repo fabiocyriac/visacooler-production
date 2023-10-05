@@ -4,6 +4,10 @@ import { displayAlert } from '../../redux/features/util/utilSlice';
 import { editVisa, createVisa } from '../../redux/features/visa/visaService';
 import { handleChange, clearValues } from '../../redux/features/visa/visaSlice';
 import Wrapper from '../../assets/wrappers/DashboardFormPage'
+import { FormInput, FormSelect } from '../../components'
+import { countries } from "countries-list";
+import { useEffect } from 'react'
+
 
 const ApplyVisa = () => {
 
@@ -13,6 +17,8 @@ const ApplyVisa = () => {
     showAlert,
     caseManager,
     country,
+    description,
+    price,
     visaLocation,
     visaType,
     visaTypeOptions,
@@ -24,11 +30,8 @@ const ApplyVisa = () => {
   const handleSubmit = (e) => {
     e.preventDefault()
 
-    if (!caseManager || !country || !visaLocation) {
-      dispatch(displayAlert())
-      return
-    }
     if (isEditing) {
+      console.log("editing!!!!!")
       dispatch(editVisa())
       return
     }
@@ -40,72 +43,65 @@ const ApplyVisa = () => {
     dispatch(handleChange({ name, value }))
   }
 
+  const getCountryList = () => {
+    const countryArray = [];
+    Object.keys(countries).forEach((country) => {
+      countryArray.push(countries[country].name);
+    });
+    return countryArray.sort();
+  };
+
   return (
-    <Wrapper>
-      <form className='form'>
-        <h3>{isEditing ? 'Apply visa' : 'Add visa'}</h3>
-        {showAlert && <Alert />}
-        <div className='form-center'>
-          {/* country */}
-          <FormRow
-            type='text'
-            name='country'
-            value={country}
-            handleChange={handleVisaInput}
-          />
-          {/* location */}
-          <FormRow
-            type='text'
-            labelText='visa location'
-            name='visaLocation'
-            value={visaLocation}
-            handleChange={handleVisaInput}
-          />
-          {/* visa status */}
-          <FormRowSelect
-            name='status'
-            value={status}
-            handleChange={handleVisaInput}
-            list={statusOptions}
-          />
-          {/* visa type */}
-          <FormRowSelect
-            name='visaType'
-            labelText='visa type'
-            value={visaType}
-            handleChange={handleVisaInput}
-            list={visaTypeOptions}
-          />
-          {/* caseManager */}
-          <FormRow
-            type='text'
-            name='caseManager'
-            value={caseManager}
-            handleChange={handleVisaInput}
-          />
-          {/* btn container */}
-          <div className='btn-container'>
-            <button
-              type='submit'
-              className='btn btn-block submit-btn'
-              onClick={handleSubmit}
-              disabled={isLoading}
-            >
-              submit
-            </button>
-            <button
-              className='btn btn-block clear-btn'
-              onClick={(e) => {
-                e.preventDefault()
-                dispatch(clearValues())
-              }}
-            >
-              clear
-            </button>
-          </div>
-        </div>
-      </form>
-    </Wrapper>
+
+    <form className='bg-base-200 rounded-md px-8 py-4 grid gap-x-4  gap-y-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 items-center'>
+      {/* Country */}
+      <FormSelect
+        label='select country'
+        name='country'
+        value={country}
+        handleChange={handleVisaInput}
+        list={['Select', ...getCountryList()]}
+        size='select-sm'
+      />
+      {/* CATEGORIES */}
+      <FormSelect
+        label='select category'
+        name='visaType'
+        value={visaType}
+        handleChange={handleVisaInput}
+        list={['Select', ...visaTypeOptions]}
+        size='select-sm'
+      />
+      {/* description */}
+      <FormInput
+        type='text'
+        label='description'
+        name='description'
+        value={description}
+        handleChange={handleVisaInput}
+        size='input-sm'
+      />
+      {/* price */}
+      <FormInput
+        type='number'
+        label='price'
+        name='price'
+        value={price}
+        handleChange={handleVisaInput}
+        size='input-sm'
+      />
+
+      <div className='md:block hidden'></div>
+      <div className='md:block hidden'></div>
+      {/* BUTTONS */}
+      <button type='submit' className='btn btn-primary btn-sm' onClick={handleSubmit} disabled={isLoading}>
+        Add
+      </button>
+      <button className='btn btn-accent btn-sm'>
+        clear
+      </button>
+    </form>
+
   )
 }
 

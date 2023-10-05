@@ -7,10 +7,6 @@ const VisaSchema = new mongoose.Schema(
       required: [true, 'Please provide country'],
       maxlength: 50,
     },
-    caseManager: {
-      type: String,
-      maxlength: 100,
-    },
     status: {
       type: String,
       enum: ['interview', 'approved', 'pending'],
@@ -21,9 +17,13 @@ const VisaSchema = new mongoose.Schema(
       enum: ['student-visa', 'dependent-visa', 'visitor-visa', 'work-visa'],
       default: 'full-time',
     },
-    visaLocation: {
+    price: {
+      type: Number,
+      default: 0,
+      required: true,
+    },
+    description: {
       type: String,
-      default: 'my city',
       required: true,
     },
     createdBy: {

@@ -78,6 +78,7 @@ const Filters = () => {
                 list={sortOptions}
                 size='select-sm'
             />
+            
             <div className='md:block hidden'></div>
             <div className='md:block hidden'></div>
             {/* BUTTONS */}

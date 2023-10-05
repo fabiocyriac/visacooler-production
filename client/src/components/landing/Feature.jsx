@@ -1,4 +1,4 @@
-import featureImg from "../../assets/feature.jpg";
+import featureImg from "../../assets/banner.png";
 
 // motion
 import { motion } from "framer-motion";

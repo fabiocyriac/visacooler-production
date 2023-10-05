@@ -7,11 +7,13 @@ const initialState = {
     editVisaId: '',
     caseManager: '',
     country: '',
+    description: '',
+    price: '',
     visaLocation: '',
     visaTypeOptions: ['student-visa', 'dependent-visa', 'visitor-visa', 'work-visa'],
     countryOptions: ['UK', 'USA', 'Canada', 'Australia', 'UAE', 'Ireland'],
     companyOptions: ['IDP', 'LeapScholar', 'Yocket', 'GeeBee', 'Edvoy', 'Studyportals'],
-    visaType: 'student-visa',
+    visaType: 'Select',
     statusOptions: ['interview', 'approved', 'pending'],
     status: 'pending',
     visas: [],
@@ -23,7 +25,7 @@ const initialState = {
     search: '',
     searchStatus: 'all',
     searchType: 'all',
-    searchCountry: '',
+    searchCountry: 'Select',
     searchCompany: 'all',
     sort: 'latest',
     sortOptions: ['latest', 'oldest', 'a-z', 'z-a'],
@@ -61,9 +63,9 @@ const visaSlice = createSlice({
             state.status = 'pending'
         },
         clearFilters: (state, action) => {
-            state.searchCountry = ''
             state.searchStatus = 'all'
             state.searchType = 'all'
+            state.searchCountry = 'Select'
             state.searchCompany = 'all'
             state.sort = 'latest'
         },

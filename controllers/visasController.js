@@ -10,9 +10,9 @@ import mongoose from 'mongoose';
 import moment from 'moment';
 
 const createVisa = async (req, res) => {
-  const { caseManager, country } = req.body;
+  const { visaType, country } = req.body;
 
-  if (!caseManager || !country) {
+  if (!visaType || !country) {
     throw new BadRequestError('Please provide all values');
   }
   req.body.createdBy = req.user.userId;

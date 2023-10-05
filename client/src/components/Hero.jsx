@@ -32,7 +32,7 @@ const Hero = () => {
             knowledge of global legal complexities, as well as the capabilities
             to deliver a truly meaningful solution.
           </p>
-          <div className='mt-10'>
+          <div className='mt-8'>
             <Link to='/products' className='btn btn-primary'>
               Our Visas
             </Link>

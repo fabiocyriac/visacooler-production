@@ -7,7 +7,7 @@ export const links = [
 
 export const userMenu = [
   { id: 1, text: 'stats', path: '/' },
-  { id: 2, text: 'visas', path: 'all-visas' },
+  { id: 2, text: 'visas', path: 'products' },
   { id: 3, text: 'my visa', path: 'my-visas' },
   { id: 4, text: 'profile', path: 'profile' },
   { id: 5, text: 'Messages', path: 'messages' },
@@ -17,7 +17,7 @@ export const userMenu = [
 
 export const adminMenu = [
   { id: 1, text: 'stats', path: '/' },
-  { id: 2, text: 'visas', path: 'all-visas' },
+  { id: 2, text: 'visas', path: 'products' },
   { id: 3, text: 'my visa', path: 'my-visas' },
   { id: 4, text: 'profile', path: 'profile' },
   { id: 5, text: 'Messages', path: 'messages' },
@@ -27,7 +27,7 @@ export const adminMenu = [
 
 export const partnerMenu = [
   { id: 1, text: 'stats', path: '/' },
-  { id: 2, text: 'visas', path: 'all-visas' },
+  { id: 2, text: 'visas', path: 'products' },
   { id: 3, text: 'my visa', path: 'my-visas' },
   { id: 4, text: 'profile', path: 'profile' },
   { id: 5, text: 'Messages', path: 'messages' },
@@ -37,7 +37,7 @@ export const partnerMenu = [
 
 export const partnerAdminMenu = [
   { id: 1, text: 'stats', path: '/' },
-  { id: 2, text: 'visas', path: 'all-visas' },
+  { id: 2, text: 'visas', path: 'products' },
   { id: 3, text: 'my visa', path: 'my-visas' },
   { id: 4, text: 'profile', path: 'profile' },
   { id: 5, text: 'Messages', path: 'messages' },

@@ -7,7 +7,7 @@ const SingleProduct = () => {
     window.scrollTo(0, 0);
   }, []);
   const { state } = useLocation();
-  const { country, caseManager, status, visaType, visaLocation, _id } = state.visas;
+  const { country, description, status, visaType, price, _id } = state.visas;
   const dollarsAmount = '$200';
   const colors = [
     "#33FF57",
@@ -18,10 +18,8 @@ const SingleProduct = () => {
     cartID: _id,
     productID: _id,
     country,
-    caseManager,
     status,
     visaType,
-    visaLocation,
   };
 
   const dispatch = useDispatch();
@@ -54,10 +52,9 @@ const SingleProduct = () => {
         <div>
           <h1 className='capitalize text-3xl font-bold'>{visaType}</h1>
           <h4 className='text-xl text-neutral-content font-bold mt-2'>
-            {visaType}
+            {country}
           </h4>
-          <p className='mt-3 text-xl'>{dollarsAmount}</p>
-          <p className='mt-6 leading-8'>{status}</p>
+          <p className='mt-3 text-xl'>{description}</p>
           {/* COLORS */}
           <div className='mt-6'>
             <h4 className='text-md font-medium tracking-wider capitalize'>

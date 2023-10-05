@@ -6,13 +6,13 @@ import moment from 'moment';
 
 
 const getAllProducts = async (req, res) => {
-  const { status, visaType, sort, search } = req.query;
+  const { country, visaType, sort, search } = req.query;
 
   const queryObject = {};
   // add stuff based on condition
 
-  if (status && status !== 'all') {
-    queryObject.status = status;
+  if (country && country !== 'Select') {
+    queryObject.country = country;
   }
   if (visaType && visaType !== 'all') {
     queryObject.visaType = visaType;

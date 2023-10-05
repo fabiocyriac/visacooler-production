@@ -78,7 +78,6 @@ function SamplePrevArrow(props) {
     );
 }
 
-
 const Categories = () => {
     return (
         <motion.div
@@ -98,10 +97,10 @@ const Categories = () => {
                                     <img src={category11} alt="" className="w-16 h-16" />
                                 </div>
                                 <h4 className="mt-4 mb-2 font-medium">
-                                    Bootstrap
+                                IDP
                                 </h4>
                                 <p className="text-gray-500 text-xs">
-                                    32 Courses
+                                    32 Visas
                                 </p>
                             </div>
                         </div>
@@ -112,10 +111,10 @@ const Categories = () => {
                                     <img src={category22} alt="" className="w-16 h-16" />
                                 </div>
                                 <h4 className="mt-4 mb-2 font-medium">
-                                    HTML
+                                LeapScholar
                                 </h4>
                                 <p className="text-gray-500 text-xs">
-                                    30 Courses
+                                    30 Visas
                                 </p>
                             </div>
                         </div>
@@ -126,10 +125,10 @@ const Categories = () => {
                                     <img src={category3} alt="" className="w-16 h-16" />
                                 </div>
                                 <h4 className="mt-4 mb-2 font-medium">
-                                    JQuery
+                                Yocket
                                 </h4>
                                 <p className="text-gray-500 text-xs">
-                                    32 Courses
+                                    32 Visas
                                 </p>
                             </div>
                         </div>
@@ -140,10 +139,10 @@ const Categories = () => {
                                     <img src={category4} alt="" className="w-16 h-16" />
                                 </div>
                                 <h4 className="mt-4 mb-2 font-medium">
-                                    Sass
+                                GeeBee
                                 </h4>
                                 <p className="text-gray-500 text-xs">
-                                    32 Courses
+                                    32 Visas
                                 </p>
                             </div>
                         </div>
@@ -154,10 +153,10 @@ const Categories = () => {
                                     <img src={category5} alt="" className="w-16 h-16" />
                                 </div>
                                 <h4 className="mt-4 mb-2 font-medium">
-                                    React
+                                Edvoy
                                 </h4>
                                 <p className="text-gray-500 text-xs">
-                                    32 Courses
+                                    32 Visas
                                 </p>
                             </div>
                         </div>
@@ -168,10 +167,10 @@ const Categories = () => {
                                     <img src={category6} alt="" className="w-16 h-16" />
                                 </div>
                                 <h4 className="mt-4 mb-2 font-medium">
-                                    Java
+                                Studyportals
                                 </h4>
                                 <p className="text-gray-500 text-xs">
-                                    32 Courses
+                                    32 Visas
                                 </p>
                             </div>
                         </div>
@@ -182,10 +181,10 @@ const Categories = () => {
                                     <img src={category7} alt="" className="w-16 h-16" />
                                 </div>
                                 <h4 className="mt-4 mb-2 font-medium">
-                                    Python
+                                StudyLinks
                                 </h4>
                                 <p className="text-gray-500 text-xs">
-                                    32 Courses
+                                    32 Visas
                                 </p>
                             </div>
                         </div>
@@ -196,10 +195,10 @@ const Categories = () => {
                                     <img src={category8} alt="" className="w-16 h-16" />
                                 </div>
                                 <h4 className="mt-4 mb-2 font-medium">
-                                    MongoDB
+                                    Envertiz
                                 </h4>
                                 <p className="text-gray-500 text-xs">
-                                    32 Courses
+                                    32 Visas
                                 </p>
                             </div>
                         </div>
@@ -210,10 +209,10 @@ const Categories = () => {
                                     <img src={category1} alt="" className="w-16 h-16" />
                                 </div>
                                 <h4 className="mt-4 mb-2 font-medium">
-                                    MongoDB
+                                    GNF
                                 </h4>
                                 <p className="text-gray-500 text-xs">
-                                    32 Courses
+                                    32 Visas
                                 </p>
                             </div>
                         </div>
@@ -224,10 +223,10 @@ const Categories = () => {
                                     <img src={category1} alt="" className="w-16 h-16" />
                                 </div>
                                 <h4 className="mt-4 mb-2 font-medium">
-                                    MongoDB
+                                    GNF
                                 </h4>
                                 <p className="text-gray-500 text-xs">
-                                    32 Courses
+                                    32 Visas
                                 </p>
                             </div>
                         </div>
@@ -238,10 +237,10 @@ const Categories = () => {
                                     <img src={category1} alt="" className="w-16 h-16" />
                                 </div>
                                 <h4 className="mt-4 mb-2 font-medium">
-                                    MongoDB
+                                    GNF
                                 </h4>
                                 <p className="text-gray-500 text-xs">
-                                    32 Courses
+                                    32 Visas
                                 </p>
                             </div>
                         </div>
@@ -252,10 +251,10 @@ const Categories = () => {
                                     <img src={category1} alt="" className="w-16 h-16" />
                                 </div>
                                 <h4 className="mt-4 mb-2 font-medium">
-                                    MongoDB
+                                    GNF
                                 </h4>
                                 <p className="text-gray-500 text-xs">
-                                    32 Courses
+                                    32 Visas
                                 </p>
                             </div>
                         </div>
@@ -266,10 +265,10 @@ const Categories = () => {
                                     <img src={category1} alt="" className="w-16 h-16" />
                                 </div>
                                 <h4 className="mt-4 mb-2 font-medium">
-                                    MongoDB
+                                    GNF
                                 </h4>
                                 <p className="text-gray-500 text-xs">
-                                    32 Courses
+                                    32 Visas
                                 </p>
                             </div>
                         </div>
