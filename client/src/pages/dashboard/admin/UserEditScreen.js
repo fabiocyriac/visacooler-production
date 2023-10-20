@@ -69,9 +69,9 @@ export default function UserEditScreen(props) {
       </div>
       <form className='bg-base-200 rounded-md px-8 py-4 grid gap-x-4 gap-y-8 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 items-center'>
         {/* name */}
-        <FormInput type='text' label='name' name='name' size='input-sm' value={name} handleChange={(e) => setName(e.target.value)} />
+        <FormInput type='text' label='name' name='name' value={name} handleChange={(e) => setName(e.target.value)} />
         {/* email */}
-        <FormInput type='email' label='email' name='email' size='input-sm' value={email} handleChange={(e) => setEmail(e.target.value)} />
+        <FormInput type='email' label='email' name='email' value={email} handleChange={(e) => setEmail(e.target.value)} />
         {/* isPartner */}
         <FormCheckbox name='isPartner' label='isPartner' size='checkbox-sm' checked={isPartner} handleChange={(e) => setIsPartner(e.target.checked)} />
         {/* isAdmin */}

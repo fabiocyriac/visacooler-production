@@ -10,7 +10,7 @@ const ProductsList = () => {
   return (
     <div className='mt-12 grid gap-y-8'>
       {visas.map((visa) => {
-        const { country, visaType, _id } = visa;
+        const { country, visaType, price, _id } = visa;
         return (
           <div
             key={_id}
@@ -35,7 +35,7 @@ const ProductsList = () => {
               </div>
             <div className='font-medium ml-0 sm:ml-auto text-lg'>
               <div className="pb-4">
-                <span className="line-through text-green-600 font-bold pr-2">$3,000</span><span className="text-green-600 font-bold">$2,000</span>
+                <span className="line-through text-green-600 font-bold pr-2">{price}</span><span className="text-green-600 font-bold">{price}</span>
               </div>
               <Link
                 key={_id}

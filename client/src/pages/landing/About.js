@@ -53,7 +53,7 @@ const About = () => {
                             What’s different about VISAX?
                         </h2>
                         <p class="max-w-sm text-gray-400 lg:mx-0 sm:mx-auto md:text-left">
-                            Manage provides all the functionality your team needs, without the complexity. Our software is tailor-made for modern digital product teams.
+                            Visax provides all the functionality your team needs, without the complexity. Our software is tailor-made for modern digital product teams.
                         </p>
                     </div>
                     <div class="flex flex-col space-y-12 md:px-12 md:w-1/2">

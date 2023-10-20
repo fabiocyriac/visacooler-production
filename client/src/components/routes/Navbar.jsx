@@ -73,7 +73,11 @@ const Navbar = () => {
           {user && user.isAdmin ?
             <div className="dropdown dropdown-hover">
               <label tabIndex={0} className="cursor-pointer">Admin</label>
-              <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
+              <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52" onClick={() => {
+                if (document.activeElement instanceof HTMLElement) {
+                  document.activeElement.blur()
+                }
+              }}>
                 <li><Link to='/profile'>Partner Profile</Link></li>
                 <li><Link to='/dashboard'>Dashboard</Link></li>
                 <li><Link to='/bills'>Bills</Link></li>
@@ -87,7 +91,7 @@ const Navbar = () => {
                 <li><Link to='/user-list'>Users</Link></li>
 
 
-                
+
 
               </ul>
             </div> : null}
@@ -117,15 +121,7 @@ const Navbar = () => {
               </div>
             </label>
             <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
-              <li>
-                <a className="justify-between">
-                  Become a Partner
-                </a>
-              </li>
-              <li><a>Dashboard</a></li>
-              <li><a>Visas</a></li>
-              <li><a>Orders</a></li>
-              <li><a>Users</a></li>
+              <li><a className="justify-between">Become a Partner</a></li>
               <li><a>Settings</a></li>
               <li><a>Logout</a></li>
             </ul>

@@ -21,7 +21,7 @@ const Hero = () => {
       >
         <div>
           <h1 className='max-w-2xl text-4xl font-bold tracking-tight sm:text-6xl'>
-            We are changing the way people travel
+            We are changing the way people immigrate
           </h1>
           <p className='text-gray-400 mt-8 max-w-xl text-lg leading-8'>
             Today's global enterprises face the challenge of getting the
