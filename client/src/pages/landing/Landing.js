@@ -1,9 +1,7 @@
-import { useSelector } from 'react-redux'
 import React from 'react';
-import { Hero, Categories, PopularVisas, PopularServices } from '../../components';
+import { Hero, Categories, PopularVisas, PopularServices } from '../../components/landing';
 
 const Landing = () => {
-  const { user } = useSelector(state => state.user)
   return (
     <>
       <Hero />

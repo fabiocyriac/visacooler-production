@@ -4,7 +4,7 @@ import Partner from './Partner'
 import Error from './Error'
 import Login from './Login'
 import Register from './Register'
-import Products from './Products'
+import Visas from './Visas'
 import Tags from './Tags'
 import SingleProduct from './SingleProduct'
-export { Landing, About, Partner,  Error, Login, Register, Products, Tags, SingleProduct }
+export { Landing, About, Partner,  Error, Login, Register, Visas, Tags, SingleProduct }

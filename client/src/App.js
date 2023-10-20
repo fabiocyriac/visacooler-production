@@ -1,15 +1,26 @@
 import { useEffect } from 'react'
-import { useDispatch } from 'react-redux'
-import { getUser } from './redux/features/user/userService'
-import Navbar from './components/Navbar';
-import Header from './components/Header';
-import MainRoutes from './Routes'
+import { useDispatch, useSelector } from 'react-redux'
+import { getCurrentUser } from './redux/features/auth/authService'
+import { resetState } from './redux/features/auth/authSlice';
+import Navbar from './components/routes/Navbar';
+import Header from './components/routes/Header';
+import MainRoutes from './components/routes/MainRoutes';
 
 function App() {
+
+  const { success, failure } = useSelector(state => state.auth)
+
   const dispatch = useDispatch()
   useEffect(() => {
-    dispatch(getUser())
+    dispatch(getCurrentUser())
   }, []);
+
+  useEffect(() => {
+    if (success || failure) {
+      dispatch(resetState())
+    }
+  }, [success, failure]);
+
   return (
     <>
       <Header />

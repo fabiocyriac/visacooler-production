@@ -1,9 +1,11 @@
 import { useState, useEffect } from 'react';
-import { FormInput, Alert } from '../../components';
+import FormInput from '../../components/form/FormInput';
 import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import { createUser } from '../../redux/features/user/userService';
+import { createUser } from '../../redux/features/auth/authService';
+import { resetState } from '../../redux/features/auth/authSlice';
 import { useDispatch, useSelector } from 'react-redux';
+import Loading from '../../components/shared/Loading';
 
 const initialState = {
   name: '',
@@ -15,7 +17,7 @@ const Register = () => {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { user, error, isLoading } = useSelector(state => state.user)
+  const { user, success, failure, error, loading } = useSelector(state => state.auth)
   const [values, setValues] = useState(initialState);
 
   const handleChange = (e) => {
@@ -34,15 +36,18 @@ const Register = () => {
   };
 
   useEffect(() => {
-    if (user) {
-      setTimeout(() => {
+    if (success && user) {
+      toast.success("Registration Successful!!!");
         navigate('/');
-      }, 3000);
+        dispatch(resetState())
     }
     else if (error) {
-      toast.error("Error occured");
+      toast.error(error);
+      dispatch(resetState())
     }
-  }, [user]);
+  }, [user, success, failure, error, loading]);
+
+  if (loading) return <Loading />;
 
   return (
     <section className='h-fit grid place-items-center'>
@@ -52,7 +57,7 @@ const Register = () => {
         <FormInput type='email' label='email' name='email' value={values.email} handleChange={handleChange} />
         <FormInput type='password' label='password' name='password' value={values.password} handleChange={handleChange} />
         <div className='mt-4'>
-          <button type='submit' className='btn btn-primary btn-block' disabled={isLoading}>
+          <button type='submit' className='btn btn-primary btn-block' disabled={loading}>
             Register
           </button>
         </div>

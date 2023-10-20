@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react';
-import { FormInput, SubmitBtn, Alert } from '../../components';
+import FormInput from '../../components/form/FormInput';
 import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import { displayAlert, clearAlert } from '../../redux/features/util/utilSlice';
-import { loginUser } from '../../redux/features/user/userService';
+import Loading from '../../components/shared/Loading';
+import { loginUser } from '../../redux/features/auth/authService';
+import { resetState } from '../../redux/features/auth/authSlice';
 import { useDispatch, useSelector } from 'react-redux';
 
 const initialState = {
@@ -17,8 +18,7 @@ const Login = () => {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { user, error, isLoading } = useSelector(state => state.user)
-  const { showAlert } = useSelector(stste => stste.util)
+  const { user, error, loading, success, failure } = useSelector(state => state.auth)
   const [values, setValues] = useState(initialState);
 
   const handleChange = (e) => {
@@ -37,16 +37,18 @@ const Login = () => {
   };
 
   useEffect(() => {
-    if (user) {
-      setTimeout(() => {
-        navigate('/');
-      }, 3000);
+    if (success && user) {
+      toast.success("Login Successfull!!!");
+      navigate('/');
+      dispatch(resetState())
     }
-    else if (error) {
-      toast.error("Log in failed");
+    else if (failure) {
+      toast.error(error);
+      dispatch(resetState())
     }
-  }, [user]);
+  }, [user, loading, success, failure, error]);
 
+  if (loading) return <Loading />;
 
   return (
     <section className='h-fit grid place-items-center'>
@@ -55,9 +57,9 @@ const Login = () => {
         <FormInput type='email' label='email' name='email' value={values.email} handleChange={handleChange} />
         <FormInput type='password' label='password' name='password' value={values.password} handleChange={handleChange} />
         <div className='mt-4'>
-          <button type='submit' className='btn btn-primary btn-block' disabled={isLoading}>
-          Login
-        </button>
+          <button type='submit' className='btn btn-primary btn-block' disabled={loading}>
+            Login
+          </button>
         </div>
         <p className='text-center'>Not a member yet?{' '}
           <Link to='/register' className='ml-2 link link-hover link-primary capitalize'>

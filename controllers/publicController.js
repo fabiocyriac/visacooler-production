@@ -6,7 +6,7 @@ import moment from 'moment';
 
 
 const getAllProducts = async (req, res) => {
-  const { country, visaType, sort, search } = req.query;
+  const { country, visaType, partner, sort, search } = req.query;
 
   const queryObject = {};
   // add stuff based on condition
@@ -16,6 +16,9 @@ const getAllProducts = async (req, res) => {
   }
   if (visaType && visaType !== 'all') {
     queryObject.visaType = visaType;
+  }
+  if (partner && partner !== 'all') {
+    queryObject.partner = partner;
   }
   if (search) {
     queryObject.caseManager = { $regex: search, $options: 'i' };
@@ -59,7 +62,7 @@ const getAllProducts = async (req, res) => {
 
 const showStats = async (req, res) => {
   let stats = await Visa.aggregate([
-    { $match: { createdBy: mongoose.Types.ObjectId(req.user.userId) } },
+    { $match: { partner: mongoose.Types.ObjectId(req.user.userId) } },
     { $group: { _id: '$status', count: { $sum: 1 } } },
   ]);
   stats = stats.reduce((acc, curr) => {
@@ -75,7 +78,7 @@ const showStats = async (req, res) => {
   };
 
   let monthlyApplications = await Visa.aggregate([
-    { $match: { createdBy: mongoose.Types.ObjectId(req.user.userId) } },
+    { $match: { partner: mongoose.Types.ObjectId(req.user.userId) } },
     {
       $group: {
         _id: { year: { $year: '$createdAt' }, month: { $month: '$createdAt' } },

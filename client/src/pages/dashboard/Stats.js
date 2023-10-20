@@ -1,7 +1,9 @@
 import { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { showStats } from '../../redux/features/visa/visaService'
-import { StatsContainer, Loading, ChartsContainer } from '../../components'
+import Loading from '../../components/shared/Loading'
+import StatsContainer from '../../components/dashboard/StatsContainer'
+import ChartsContainer from '../../components/dashboard/ChartsContainer'
 
 const Stats = () => {
   const { isLoading, monthlyApplications } = useSelector(state => state.visa);
@@ -11,7 +13,7 @@ const Stats = () => {
     // eslint-disable-next-line
   }, [])
   if (isLoading) {
-    return <Loading center />
+    return <Loading />
   }
   return (
     <>

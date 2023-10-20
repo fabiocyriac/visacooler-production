@@ -20,8 +20,10 @@ import connectDB from './db/connect.js';
 // routers
 import authRouter from './routes/authRoutes.js';
 import visasRouter from './routes/visasRoutes.js';
+import orderRouter from './routes/orderRoutes.js';
 import publicRouter from './routes/publicRoutes.js';
 import partnerRouter from './routes/partnerRoutes.js';
+import userRouter from './routes/userRoutes.js'
 
 
 // middleware
@@ -45,9 +47,12 @@ app.use(mongoSanitize());
 app.use(cookieParser());
 
 app.use('/api/v1/auth', authRouter);
+app.use('/api/v1/users', authenticateUser, userRouter);
 app.use('/api/v1/visas', authenticateUser, visasRouter);
+app.use('/api/v1/orders', authenticateUser, orderRouter);
 app.use('/api/v1/products', publicRouter);
 app.use('/api/v1/partners', partnerRouter);
+
 
 // only when ready to deploy
 app.get('*', (req, res) => {

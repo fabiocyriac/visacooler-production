@@ -1,10 +1,6 @@
 import Visa from '../models/Visa.js';
 import { StatusCodes } from 'http-status-codes';
-import {
-  BadRequestError,
-  NotFoundError,
-  UnAuthenticatedError,
-} from '../errors/index.js';
+import { BadRequestError, NotFoundError } from '../errors/index.js';
 import checkPermissions from '../utils/checkPermissions.js';
 import mongoose from 'mongoose';
 import moment from 'moment';
@@ -15,7 +11,8 @@ const createVisa = async (req, res) => {
   if (!visaType || !country) {
     throw new BadRequestError('Please provide all values');
   }
-  req.body.createdBy = req.user.userId;
+  req.body.partner = req.user.userId;
+  req.body.company = req.user.partnerName;
   const visa = await Visa.create(req.body);
   res.status(StatusCodes.CREATED).json({ visa });
 };
@@ -25,7 +22,7 @@ const getAllVisas = async (req, res) => {
   const { status, visaType, sort, search } = req.query;
 
   const queryObject = {
-    createdBy: req.user.userId,
+    partner: req.user.userId,
   };
   // add stuff based on condition
 
@@ -73,11 +70,17 @@ const getAllVisas = async (req, res) => {
 
   res.status(StatusCodes.OK).json({ visas, totalVisas, numOfPages });
 };
+
+const getVisaDetails = async (req, res) => {
+  const visa = await Visa.findById(req.params.id);
+  res.status(StatusCodes.OK).json(visa);
+}
+
 const updateVisa = async (req, res) => {
   const { id: visaId } = req.params;
-  const { country, caseManager } = req.body;
+  const { country, visaType, description, price } = req.body;
 
-  if (!caseManager || !country) {
+  if (!country || !visaType || !description || !price) {
     throw new BadRequestError('Please provide all values');
   }
   const visa = await Visa.findOne({ _id: visaId });
@@ -87,7 +90,7 @@ const updateVisa = async (req, res) => {
   }
   // check permissions
 
-  checkPermissions(req.user, visa.createdBy);
+  checkPermissions(req.user, visa.partner);
 
   const updatedVisa = await Visa.findOneAndUpdate({ _id: visaId }, req.body, {
     new: true,
@@ -106,7 +109,7 @@ const deleteVisa = async (req, res) => {
     throw new NotFoundError(`No visa with id :${visaId}`);
   }
 
-  checkPermissions(req.user, visa.createdBy);
+  checkPermissions(req.user, visa.partner);
 
   await visa.remove();
 
@@ -115,7 +118,7 @@ const deleteVisa = async (req, res) => {
 
 const showStats = async (req, res) => {
   let stats = await Visa.aggregate([
-    { $match: { createdBy: mongoose.Types.ObjectId(req.user.userId) } },
+    { $match: { partner: mongoose.Types.ObjectId(req.user.userId) } },
     { $group: { _id: '$status', count: { $sum: 1 } } },
   ]);
   stats = stats.reduce((acc, curr) => {
@@ -131,7 +134,7 @@ const showStats = async (req, res) => {
   };
 
   let monthlyApplications = await Visa.aggregate([
-    { $match: { createdBy: mongoose.Types.ObjectId(req.user.userId) } },
+    { $match: { partner: mongoose.Types.ObjectId(req.user.userId) } },
     {
       $group: {
         _id: { year: { $year: '$createdAt' }, month: { $month: '$createdAt' } },
@@ -158,4 +161,4 @@ const showStats = async (req, res) => {
   res.status(StatusCodes.OK).json({ defaultStats, monthlyApplications });
 };
 
-export { createVisa, deleteVisa, getAllVisas, updateVisa, showStats };
+export { createVisa, deleteVisa, getAllVisas, getVisaDetails, updateVisa, showStats };

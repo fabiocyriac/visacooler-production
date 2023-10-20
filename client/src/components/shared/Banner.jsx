@@ -1,7 +1,5 @@
-// motion
 import { motion } from "framer-motion";
-// variants
-import { fadeIn } from "../../variants";
+import { fadeIn } from '../shared/variants'; 
 
 const Banner = ({banner, heading, subheading, btn1, btn2}) => {
     return (

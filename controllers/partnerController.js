@@ -32,7 +32,7 @@ const updatePartner = async (req, res) => {
   }
   // check permissions
 
-  //checkPermissions(req.user, visa.createdBy);
+  //checkPermissions(req.user, visa.partner);
 
   const updatedPartner = await Partner.findOneAndUpdate({ _id: partnerId }, req.body, {
     new: true,
@@ -51,7 +51,7 @@ const deletePartner = async (req, res) => {
     throw new NotFoundError(`No visa with id :${partnerId}`);
   }
 
-  //checkPermissions(req.user, visa.createdBy);
+  //checkPermissions(req.user, visa.partner);
 
   await partner.remove();
 

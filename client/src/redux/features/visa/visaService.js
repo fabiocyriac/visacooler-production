@@ -8,61 +8,38 @@ export const showStats = createAsyncThunk('visa/showStats', () => {
         .then(response => response.data)
 })
 
-export const getVisas = createAsyncThunk('visa/getVisas', (arg, { getState }) => {
-    const state = getState();
-    let url = `/api/v1/visas?page=${state.visa.page}&status=${state.visa.searchStatus}&visaType=${state.visa.searchType}&sort=${state.visa.sort}`;
-    if (state.visa.search) {
-        url = url + `&search=${state.visa.search}`;
-    }
+export const getVisaDetails = createAsyncThunk('user/getVisaDetails', (visaId) => {
+    return axios
+        .get(`/api/v1/visas/${visaId}`)
+        .then(response => response.data)
+})
+
+export const getVisas = createAsyncThunk('visa/getVisas', (currentVisa) => {
+    console.log("fck"+currentVisa.partner)
+    let url = `/api/v1/products?page=${currentVisa.page}&country=${currentVisa.searchCountry}&partner=${currentVisa.partner}&visaType=${currentVisa.searchType}&company=${currentVisa.searchCompany}&sort=${currentVisa.sort}`;
     return axios
         .get(url)
         .then(response => response.data)
 })
 
-export const getProducts = createAsyncThunk('visa/getProducts', (arg, { getState }) => {
-    const state = getState();
-    let url = `/api/v1/products?page=${state.visa.page}&country=${state.visa.searchCountry}&visaType=${state.visa.searchType}&sort=${state.visa.sort}`;
-    if (state.visa.search) {
-        url = url + `&search=${state.visa.search}`;
-    }
+export const createVisa = createAsyncThunk('visa/createVisa', (currentVisa) => {
     return axios
-        .get(url)
+        .post('/api/v1/visas', currentVisa)
         .then(response => response.data)
 })
 
-export const createVisa = createAsyncThunk('visa/createVisa', (arg, { getState }) => {
-    const state = getState();
-    const { country, description, visaType, price } = state.visa;
+export const editVisa = createAsyncThunk('visa/editVisa', (currentVisa, { getState }) => {
+    const { _id } = currentVisa
     return axios
-        .post('/api/v1/visas', {
-            country,
-            description,
-            visaType,
-            price,
-        })
-        .then(response => response.data)
-})
-
-export const editVisa = createAsyncThunk('visa/editVisa', (arg, { getState }) => {
-    const state = getState();
-    const { caseManager, country, visaLocation, visaType, status } = state.visa;
-    return axios
-        .patch(`/api/v1/visas/${state.visa.editVisaId}`, {
-            caseManager,
-            country,
-            visaLocation,
-            visaType,
-            status,
-        })
+        .patch(`/api/v1/visas/${_id}`,
+            currentVisa)
         .then(response => response.data)
 
 })
 
-export const deleteVisa = createAsyncThunk('visa/deleteVisa', ({ visaId }, { dispatch }) => {
+export const deleteVisa = createAsyncThunk('visa/deleteVisa', ( visaId, { dispatch }) => {
     return axios
         .delete(`/api/v1/visas/${visaId}`)
-        .then(() => {
-            dispatch(getVisas());
-        })
+        .then(response => response.data)
 })
 

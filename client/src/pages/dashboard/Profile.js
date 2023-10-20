@@ -1,205 +1,146 @@
-import { useState } from 'react'
-import { FormRow, Alert } from '../../components'
+import { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { displayAlert } from '../../redux/features/util/utilSlice'
-import { updateUser } from '../../redux/features/user/userService'
-import Wrapper from '../../assets/wrappers/DashboardFormPage'
-const Profile = () => {
-  const { user, showAlert, isLoading } =
-    useSelector(state => state.user)
+import { Link } from 'react-router-dom';
+import { updateUser } from '../../redux/features/auth/authService'
+import { resetState } from '../../redux/features/auth/authSlice'
+import FormInput from '../../components/form/FormInput'
+import { toast } from 'react-toastify';
+import Loading from '../../components/shared/Loading';
 
+const Profile = () => {
+  const { user, error, success, failure, loading } = useSelector(state => state.auth)
   const dispatch = useDispatch()
+
+  useEffect(() => {
+    if (success) {
+      toast.success("Profile Updated Successfull!!!");
+      dispatch(resetState())
+    }
+    else if (failure) {
+      toast.error(error);
+      dispatch(resetState())
+    }
+  }, [user, loading, success, failure, error]);
 
   const [name, setName] = useState(user?.name)
   const [email, setEmail] = useState(user?.email)
-  const [lastName, setLastName] = useState(user?.lastName)
-  const [location, setLocation] = useState(user?.location)
-  const [birthlocation, setBirthlocation] = useState(user?.birthlocation)
-  const [birthstate, setBirthstate] = useState(user?.birthstate)
-  const [birthcity, setBirthcity] = useState(user?.birthcity)
-  const [gender, setGender] = useState(user?.gender)
-  const [relationshipstatus, setRelationshipstatus] = useState(user?.relationshipstatus)
-  const [dateofbirth, setDateofbirth] = useState(user?.dateofbirth)
-  const [phonenumber, setPhonenumber] = useState(user?.phonenumber)
-
-
-
-
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [partnerName, setPartnerName] = useState(user?.partner?.name);
+  const [partnerLogo, setPartnerLogo] = useState(user?.partner?.logo);
+  const [partnerDescription, setPartnerDescription] = useState(user?.partner?.description);
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    if (!name || !email || !lastName || !location) {
-      dispatch(displayAlert())
+    if (!name || !email || (password !== confirmPassword)) {
+      toast.error("Please provide all values!");
       return
     }
-    dispatch(updateUser({ name, email, lastName, location }))
+    const currentUser = { name, email, password, partnerName, partnerLogo, partnerDescription };
+    dispatch(updateUser({ currentUser }))
   }
 
+  const handleReset = (e) => {
+    e.preventDefault();
+  };
+
+  if (loading) return <Loading />;
+
   return (
-    <Wrapper>
-      <form className='form' onSubmit={handleSubmit}>
-        <h3>profile</h3>
-        {showAlert && <Alert />}
-        <div className='form-center'>
-          <FormRow
-            type='text'
-            name='name'
-            value={name}
-            handleChange={(e) => setName(e.target.value)}
-          />
-          <FormRow
-            type='text'
-            labelText='last name'
-            name='lastName'
-            value={lastName}
-            handleChange={(e) => setLastName(e.target.value)}
-          />
-          <FormRow
-            type='email'
-            name='email'
-            value={email}
-            handleChange={(e) => setEmail(e.target.value)}
-          />
-          <FormRow
-            type='text'
-            name='location'
-            value={location}
-            handleChange={(e) => setLocation(e.target.value)}
-          />
-          <FormRow
-            type='text'
-            labelText='country/location of birth'
-            name='birthlocation'
-            value={birthlocation}
-            handleChange={(e) => setBirthlocation(e.target.value)}
-          />
-          <FormRow
-            type='text'
-            labelText='State/Province of birth'
-            name='birthstate'
-            value={birthstate}
-            handleChange={(e) => setBirthstate(e.target.value)}
-          />
-          <FormRow
-            type='text'
-            labelText='city of birth'
-            name='birthcity'
-            value={birthcity}
-            handleChange={(e) => setBirthcity(e.target.value)}
-          />
-          <FormRow
-            type='text'
-            labelText='Gender'
-            name='gender'
-            value={gender}
-            handleChange={(e) => setGender(e.target.value)}
-          />
-          <FormRow
-            type='text'
-            labelText='Relationship Status'
-            name='relationshipstatus'
-            value={relationshipstatus}
-            handleChange={(e) => setRelationshipstatus(e.target.value)}
-          />
-          <FormRow
-            type='text'
-            labelText='date of birth'
-            name='dateofbirth'
-            value={dateofbirth}
-            handleChange={(e) => setDateofbirth(e.target.value)}
-          />
-          <FormRow
-            type='text'
-            labelText='phone number'
-            name='phonenumber'
-            value={phonenumber}
-            handleChange={(e) => setPhonenumber(e.target.value)}
-          />
+    <>
+      <div className='text-md breadcrumbs'>
+        <ul>
+          <li>
+            <Link to='/'>Home</Link>
+          </li>
+          <li>
+            <Link to='/profile'>Profile</Link>
+          </li>
+        </ul>
+      </div>
 
-          <FormRow
-            type='text'
-            name='name'
-            value={name}
-            handleChange={(e) => setName(e.target.value)}
-          />
-          <FormRow
-            type='text'
-            labelText='last name'
-            name='lastName'
-            value={lastName}
-            handleChange={(e) => setLastName(e.target.value)}
-          />
-          <FormRow
-            type='email'
-            name='email'
-            value={email}
-            handleChange={(e) => setEmail(e.target.value)}
-          />
-          <FormRow
-            type='text'
-            name='location'
-            value={location}
-            handleChange={(e) => setLocation(e.target.value)}
-          />
-          <FormRow
-            type='text'
-            labelText='country/location of birth'
-            name='birthlocation'
-            value={birthlocation}
-            handleChange={(e) => setBirthlocation(e.target.value)}
-          />
-          <FormRow
-            type='text'
-            labelText='State/Province of birth'
-            name='birthstate'
-            value={birthstate}
-            handleChange={(e) => setBirthstate(e.target.value)}
-          />
-          <FormRow
-            type='text'
-            labelText='city of birth'
-            name='birthcity'
-            value={birthcity}
-            handleChange={(e) => setBirthcity(e.target.value)}
-          />
-          <FormRow
-            type='text'
-            labelText='Gender'
-            name='gender'
-            value={gender}
-            handleChange={(e) => setGender(e.target.value)}
-          />
-          <FormRow
-            type='text'
-            labelText='Relationship Status'
-            name='relationshipstatus'
-            value={relationshipstatus}
-            handleChange={(e) => setRelationshipstatus(e.target.value)}
-          />
-          <FormRow
-            type='text'
-            labelText='date of birth'
-            name='dateofbirth'
-            value={dateofbirth}
-            handleChange={(e) => setDateofbirth(e.target.value)}
-          />
-          <FormRow
-            type='text'
-            labelText='phone number'
-            name='phonenumber'
-            value={phonenumber}
-            handleChange={(e) => setPhonenumber(e.target.value)}
-          />
-
-
-
-
-          <button className='btn btn-block' type='submit' disabled={isLoading}>
-            {isLoading ? 'Please Wait...' : 'save changes'}
-          </button>
+      <form className='bg-base-200 rounded-md px-8 py-4 grid gap-x-4  gap-y-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 items-center'>
+        <div className="col-span-2 md:col-span-4 mt-4">
+          <div className='border-b border-base-300 pb-4'>
+            <p className='text-2xl font-medium tracking-wider capitalize'>User Profile</p>
+          </div>
         </div>
+        <FormInput
+          type='text'
+          label='name'
+          name='name'
+          size='input-sm'
+          value={name}
+          handleChange={(e) => setName(e.target.value)}
+        />
+        <FormInput
+          type='email'
+          label='email'
+          name='email'
+          size='input-sm'
+          value={email}
+          handleChange={(e) => setEmail(e.target.value)}
+        />
+        <FormInput
+          type='password'
+          label='password'
+          name='password'
+          size='input-sm'
+          value={password}
+          handleChange={(e) => setPassword(e.target.value)}
+        />
+        <FormInput
+          type='password'
+          label='confirm Password'
+          name='confirmPassword'
+          size='input-sm'
+          value={confirmPassword}
+          handleChange={(e) => setConfirmPassword(e.target.value)}
+        />
+
+        {user.isPartner && (
+          <>
+            <div className="col-span-2 md:col-span-4 mt-8">
+              <div className='border-b border-base-300 pb-4'>
+                <p className='text-2xl font-medium tracking-wider capitalize'>Partner Profile</p>
+              </div>
+            </div>
+            <FormInput
+              type='text'
+              label='Partner Name'
+              name='partnerName'
+              size='input-sm'
+              value={partnerName}
+              handleChange={(e) => setPartnerName(e.target.value)}
+            />
+            <FormInput
+              type='text'
+              label='Partner Logo'
+              name='partnerLogo'
+              size='input-sm'
+              value={partnerLogo}
+              handleChange={(e) => setPartnerLogo(e.target.value)}
+            />
+            <FormInput
+              type='text'
+              label='Partner Description'
+              name='partnerDescription'
+              size='input-sm'
+              value={partnerDescription}
+              handleChange={(e) => setPartnerDescription(e.target.value)}
+            />
+          </>
+        )}
+        <div className='md:block hidden md:col-span-2'></div>
+        {/* BUTTONS */}
+        <button type='submit' className='btn btn-primary btn-sm' onClick={handleSubmit} disabled={loading}>
+          submit
+        </button>
+        <button className='btn btn-accent btn-sm' onClick={handleReset}>
+          reset
+        </button>
       </form>
-    </Wrapper>
+    </>
   )
 }
 

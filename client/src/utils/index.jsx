@@ -24,3 +24,8 @@ export const generateAmountOptions = (number) => {
     );
   });
 };
+
+export const visaTypeOptions = ['student-visa', 'dependent-visa', 'visitor-visa', 'work-visa'];
+export const companyOptions = ['IDP', 'LeapScholar', 'Yocket', 'GeeBee', 'Edvoy', 'Studyportals'];
+export const sortOptions = ['latest', 'oldest', 'a-z', 'z-a'];
+

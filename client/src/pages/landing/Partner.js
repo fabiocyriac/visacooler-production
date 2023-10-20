@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
-import { FormInput } from '../../components';
+import FormInput from '../../components/form/FormInput';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import { loginUser } from '../../redux/features/user/userService';
+import { loginUser } from '../../redux/features/auth/authService';
 import { useDispatch, useSelector } from 'react-redux';
 
 const initialState = {
@@ -16,7 +16,7 @@ const Login = () => {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { user, error, isLoading } = useSelector(state => state.user)
+  const { user, error, loading } = useSelector(state => state.auth)
   const [values, setValues] = useState(initialState);
 
   const handleChange = (e) => {
@@ -54,7 +54,7 @@ const Login = () => {
         <FormInput type='company' label='company' name='company' value={values.company} handleChange={handleChange} />
         <FormInput type='phone' label='phone' name='phone' value={values.phone} handleChange={handleChange} />
         <div className='mt-4'>
-          <button type='submit' className='btn btn-primary btn-block' disabled={isLoading}>
+          <button type='submit' className='btn btn-primary btn-block' disabled={loading}>
             Submit
           </button>
         </div>

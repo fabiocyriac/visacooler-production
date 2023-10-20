@@ -2,45 +2,29 @@ import axios from 'axios'
 import { createAsyncThunk } from '@reduxjs/toolkit'
 
 
-// Generates pending, fulfilled and rejected action types
-export const getUser = createAsyncThunk('user/getUser', (arg, { dispatch }) => {
+export const getUserDetails = createAsyncThunk('user/getUserDetails', (userId) => {
     return axios
-        .get('/api/v1/auth/getCurrentUser')
+        .get(`/api/v1/users/${userId}`)
         .then(response => response.data)
-        .catch((error) => {
-            if (error.response.status === 401) return;
-            dispatch(logoutUser());
-        })
 })
 
-// Generates pending, fulfilled and rejected action types
-export const createUser = createAsyncThunk('user/createUser', ({currentUser}) => {
+
+export const getUsers = createAsyncThunk('user/getUsers', () => {
     return axios
-        .post('/api/v1/auth/register',
+        .get('/api/v1/users')
+        .then(response => response.data)
+})
+
+export const deleteUser = createAsyncThunk('user/deleteUser', (userId, { dispatch }) => {
+    return axios
+        .delete(`/api/v1/users/${userId}`)
+        .then(response => response.data)
+})
+
+export const editUser = createAsyncThunk('user/editUser', (currentUser, { dispatch, getState }) => {
+    const { _id } = currentUser
+    return axios
+        .patch(`/api/v1/users/${_id}`,
             currentUser)
-        .then(response => response.data)
-})
-
-// Generates pending, fulfilled and rejected action types
-export const updateUser = createAsyncThunk('user/updateUser', ({currentUser}) => {
-    return axios
-        .patch('/api/v1/auth/updateUser',
-            currentUser)
-        .then(response => response.data)
-})
-
-
-// Generates pending, fulfilled and rejected action types
-export const loginUser = createAsyncThunk('user/loginUser', ({currentUser}) => {
-    return axios
-        .post('/api/v1/auth/login',
-            currentUser)
-        .then(response => response.data)
-})
-
-// Generates pending, fulfilled and rejected action types
-export const logoutUser = createAsyncThunk('user/logoutUser', () => {
-    return axios
-        .get('/api/v1/auth/logout')
         .then(response => response.data)
 })

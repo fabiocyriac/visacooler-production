@@ -50,23 +50,28 @@ const login = async (req, res) => {
 };
 
 const updateUser = async (req, res) => {
-  const { email, name, lastName, location } = req.body;
-  if (!email || !name || !lastName || !location) {
-    throw new BadRequestError('Please provide all values');
+  const { email, name, partnerName, partnerLogo, partnerDescription } = req.body;
+  if (!email || !name ) {
+    throw new BadRequestError('Please provide all profile values');
   }
   const user = await User.findOne({ _id: req.user.userId });
 
-  user.email = email;
-  user.name = name;
-  user.lastName = lastName;
-  user.location = location;
+  user.email = email || user.email;
+  user.name = name || user.name;
+  if (user.isPartner) {
+    user.partner.name = partnerName || user.partner.name;
+    user.partner.logo = partnerLogo || user.partner.logo;
+    user.partner.description = partnerDescription || user.partner.description;
+  }
+  if (req.body.password) {
+    user.password = req.body.password;
+  }
 
-  await user.save();
+  const updatedUser = await user.save();
 
-  const token = user.createJWT();
+  const token = updatedUser.createJWT();
   attachCookie({ res, token });
-
-  res.status(StatusCodes.OK).json(user);
+  res.status(StatusCodes.OK).json(updatedUser);
 };
 
 const getCurrentUser = async (req, res) => {
