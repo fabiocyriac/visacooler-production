@@ -46,7 +46,7 @@ const About = () => {
             </div>
 
 
-            <section id="features" class="md:py-40 xl:py-40">
+            <section id="features" class="md:py-24">
                 <div class="container flex flex-col mx-auto mt-10 space-y-12 md:space-y-0 md:flex-row">
                     <div class="flex-col space-y-12 h-full md:w-1/2">
                         <h2 class="max-w-md text-4xl font-bold lg:mx-0 sm:mx-auto md:text-left">

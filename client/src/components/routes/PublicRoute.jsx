@@ -11,7 +11,7 @@ const PublicRoute = () => {
 
   if (isPageLoading) return <Loading />;
 
-  return user ? <Navigate to="/" /> : <><section className='align-element py-20'><Outlet /></section><Footer /></>
+  return user ? <Navigate to="/" /> : <><section className='align-element md:py-20 py-12'><Outlet /></section><Footer /></>
 };
 
 export default PublicRoute;

@@ -10,7 +10,7 @@ const carouselImages = [hero1, hero2, hero3, hero4];
 
 const Hero = () => {
   return (
-    <div className='grid lg:grid-cols-2 gap-24 items-center pr-4'>
+    <div className='grid lg:grid-cols-2 gap-12 items-center pr-4'>
 
       <motion.div
 

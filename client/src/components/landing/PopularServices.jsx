@@ -207,7 +207,7 @@ const PopularServices = () => {
       whileInView={"show"}
       viewport={{ once: false, amount: 0.3 }}
       className="w-full">
-      <div className='pt-24'>
+      <div className='md:pt-24 pt-12'>
         <SectionTitle text='Popular Services' />
         <div className='pt-12 gap-4'>
           <Slider {...settings}>

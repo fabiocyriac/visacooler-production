@@ -84,7 +84,7 @@ const Categories = () => {
             whileInView={"show"}
             viewport={{ once: false, amount: 0.3 }}
             className="w-full">
-            <div className='pt-24'>
+            <div className='md:pt-24'>
                 <SectionTitle text='Browse Companies' />
                 <div className='pt-12'>
                     <Slider {...settings}>
