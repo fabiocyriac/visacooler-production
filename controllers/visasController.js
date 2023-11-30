@@ -11,8 +11,7 @@ const createVisa = async (req, res) => {
   if (!visaType || !country) {
     throw new BadRequestError('Please provide all values');
   }
-  req.body.partner = req.user.userId;
-  req.body.company = req.user.partnerName;
+  req.body.createdBy = req.user.createdBy;
   const visa = await Visa.create(req.body);
   res.status(StatusCodes.CREATED).json({ visa });
 };
@@ -22,7 +21,7 @@ const getAllVisas = async (req, res) => {
   const { status, visaType, sort, search } = req.query;
 
   const queryObject = {
-    partner: req.user.userId,
+    createdBy: req.user.createdBy,
   };
   // add stuff based on condition
 
@@ -88,9 +87,12 @@ const updateVisa = async (req, res) => {
   if (!visa) {
     throw new NotFoundError(`No visa with id :${visaId}`);
   }
+
+  req.body.createdBy = req.user.createdBy;
+
   // check permissions
 
-  checkPermissions(req.user, visa.partner);
+  //checkPermissions(req.user, visa.partner);
 
   const updatedVisa = await Visa.findOneAndUpdate({ _id: visaId }, req.body, {
     new: true,

@@ -14,10 +14,9 @@ const reviewSchema = new mongoose.Schema(
 const VisaSchema = new mongoose.Schema(
   {
     country: { type: String, required: [true, 'Please provide country'], maxlength: 50 },
-    partner: { type: mongoose.Types.ObjectId, ref: 'User', required: [true, 'Please provide partner'] },
+    createdBy: { type: mongoose.Types.ObjectId, ref: 'Partner', required: [true, 'Please provide partner'] },
     status: { type: String, enum: ['interview', 'approved', 'pending'], default: 'pending' },
     visaType: { type: String, enum: ['student-visa', 'dependent-visa', 'visitor-visa', 'work-visa'], default: 'full-time' },
-    company: { type: String, required: true },
     price: { type: Number, default: 0, required: true },
     description: { type: String, required: true },
     image: { type: String, required: false },

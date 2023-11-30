@@ -5,14 +5,51 @@ import { BadRequestError, NotFoundError } from '../errors/index.js';
 
 
 const getUsers = async (req, res) => {
-  const users = await User.find({});
-  res.status(StatusCodes.OK).json(users);
+
+  const queryObject = {
+    createdBy: req.user.createdBy,
+  };
+  // no awit
+  let result = User.find(queryObject);
+
+  // setup pagination
+  const page = Number(req.query.page) || 1;
+  const limit = Number(req.query.limit) || 10;
+  const skip = (page - 1) * limit;
+
+  result = result.skip(skip).limit(limit);
+
+  const users = await result;
+
+  const totalUsers = await User.countDocuments({});
+  const numOfPages = Math.ceil(totalUsers / limit);
+
+  res.status(StatusCodes.OK).json({ users, totalUsers, numOfPages });
+
 }
 
 const getUserDetails = async (req, res) => {
   const user = await User.findById(req.params.id);
   res.status(StatusCodes.OK).json(user);
 }
+
+const createUser = async (req, res) => {
+  const { email, password } = req.body;
+  if (!email || !password) {
+    throw new BadRequestError('please provide all values');
+  }
+  
+  const userAlreadyExists = await User.findOne({ email });
+  if (userAlreadyExists) {
+    throw new BadRequestError('Email already in use');
+  }
+  req.body.createdBy = req.user.createdBy;
+
+  const user = await User.create(req.body);
+
+  res.status(StatusCodes.CREATED).json({ user });
+
+};
 
 const updateUsers = async (req, res) => {
   const user = await User.findById(req.params.id);
@@ -43,4 +80,4 @@ const deleteUser = async (req, res) => {
   }
 }
 
-export { getUsers, getUserDetails, deleteUser, updateUsers };
+export { getUsers, getUserDetails, createUser, deleteUser, updateUsers };

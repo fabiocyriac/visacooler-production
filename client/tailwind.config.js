@@ -1,21 +1,16 @@
 /** @type {import('tailwindcss').Config} */
-export default {
-  content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
+module.exports = {
+  content: [
+    "./src/**/*.{js,jsx,ts,tsx}",
+    "./node_modules/react-tailwindcss-datepicker/dist/index.esm.js"
+  ],
+  darkMode: ["class", '[data-theme="dark"]'],
   theme: {
-    extend: {
-      colors: {
-        'primary': '#010851',
-        'secondary': '#9A7AF1',
-        'tertiary': '#707070',
-        'pink': '#FD809E'
-      },
-      boxShadow: {
-        '3xl': '0px 10px 50px 0px rgba(0, 0, 0, 0.15)',
-      }
-    },
+    extend: {},
   },
-  plugins: [require('@tailwindcss/typography'), require('daisyui')],
+  plugins: [require("@tailwindcss/typography"), require("daisyui")],
   daisyui: {
-    themes: ['winter', 'dracula'],
+    themes: ["light", "dark",],
   },
-};
+
+}

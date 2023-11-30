@@ -15,17 +15,18 @@ const messageSchema = new mongoose.Schema(
 );
 
 const UserSchema = new mongoose.Schema({
-  name: { type: String, required: [true, 'Please provide name'], minlength: 3, maxlength: 20, trim: true },
+  name: { type: String, required: true, default: 'New User', minlength: 3, maxlength: 20, trim: true },
   email: { type: String, required: [true, 'Please provide email'], validate: { validator: validator.isEmail, message: 'Please provide a valid email' }, unique: true },
   password: { type: String, required: [true, 'Please provide password'], minlength: 6, select: false },
+  createdBy: { type: mongoose.Types.ObjectId, ref: 'Partner', required: [true, 'Please provide partner'] },
+  status: { type: String, required: true, default: 'pending' },
   lastName: { type: String, trim: true, maxlength: 20, default: 'lastName' },
-  location: { type: String, trim: true, maxlength: 20, default: 'my city' },
   isAdmin: { type: Boolean, default: false },
   isPartner: { type: Boolean, default: false },
   isPartnerAdmin: { type: Boolean, default: false },
-  partner: { name: String, logo: String, description: String, company: String, rating: { type: Number, default: 0, required: true }, numReviews: { type: Number, default: 0, required: true } },
   messages: [messageSchema],
-})
+},
+{ timestamps: true })
 
 UserSchema.pre('save', async function () {
   // console.log(this.modifiedPaths())
@@ -39,9 +40,9 @@ UserSchema.methods.createJWT = function () {
     userId: this._id,
     name: this.name,
     email: this.email,
-    partnerName: this.partner.name,
     isAdmin: this.isAdmin,
-    isPartner: this.isPartner
+    isPartner: this.isPartner,
+    createdBy: this.createdBy
   },
     process.env.JWT_SECRET, {
     expiresIn: process.env.JWT_LIFETIME,

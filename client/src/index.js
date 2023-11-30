@@ -1,23 +1,24 @@
-import React from 'react';
+import React,  { Suspense } from 'react';
 import ReactDOM from 'react-dom/client';
-import 'normalize.css';
-import './index.css';
-import 'react-toastify/dist/ReactToastify.css';
-import { ToastContainer } from 'react-toastify';
-import App from './App';
-import store from './redux/store';
+import './main/index.css';
+import App from './main/App';
+import reportWebVitals from './main/reportWebVitals';
+import store from './main/redux/store';
 import { Provider } from 'react-redux'
-import { BrowserRouter } from 'react-router-dom'
+import SuspenseContent from './main/containers/SuspenseContent';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
-
 root.render(
-  <React.StrictMode>
-    <Provider store={store}>
-      <BrowserRouter>
-        <App />
-        <ToastContainer position='top-center' />
-      </BrowserRouter>
-    </Provider>
-  </React.StrictMode>
+  // <React.StrictMode>
+    <Suspense fallback={<SuspenseContent />}>
+        <Provider store={store}>
+            <App />
+        </Provider>
+    </Suspense>
+  // </React.StrictMode>
 );
+
+// If you want to start measuring performance in your app, pass a function
+// to log results (for example: reportWebVitals(console.log))
+// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
+reportWebVitals();

@@ -24,6 +24,8 @@ import orderRouter from './routes/orderRoutes.js';
 import publicRouter from './routes/publicRoutes.js';
 import partnerRouter from './routes/partnerRoutes.js';
 import userRouter from './routes/userRoutes.js'
+import servicesRouter from './routes/servicesRoutes.js'
+import documentRouter from './routes/documentRoutes.js'
 
 
 // middleware
@@ -48,10 +50,12 @@ app.use(cookieParser());
 
 app.use('/api/v1/auth', authRouter);
 app.use('/api/v1/users', authenticateUser, userRouter);
+app.use('/api/v1/services', authenticateUser, servicesRouter);
 app.use('/api/v1/visas', authenticateUser, visasRouter);
 app.use('/api/v1/orders', authenticateUser, orderRouter);
 app.use('/api/v1/products', publicRouter);
-app.use('/api/v1/partners', partnerRouter);
+app.use('/api/v1/partners', authenticateUser, partnerRouter);
+app.use('/api/v1/documents', authenticateUser, documentRouter);
 
 
 // only when ready to deploy
