@@ -8,7 +8,7 @@ import {
   getServiceDetails,
   editService,
   showStats,
-} from '../controllers/ServicesController.js';
+} from '../controllers/servicesController.js';
 
 import testUser from '../middleware/testUser.js';
 
