@@ -20,9 +20,6 @@ const Team = lazy(() => import('../pages/protected/Team'))
 const Transactions = lazy(() => import('../pages/protected/Transactions'))
 const Bills = lazy(() => import('../pages/protected/Bills'))
 const ProfileSettings = lazy(() => import('../pages/protected/ProfileSettings'))
-const GettingStarted = lazy(() => import('../pages/public/GettingStarted'))
-const DocFeatures = lazy(() => import('../pages/public/DocFeatures'))
-const DocComponents = lazy(() => import('../pages/public/DocComponents'))
 
 
 const routes = [
@@ -81,18 +78,6 @@ const routes = [
   {
     path: '/settings-billing',
     component: Bills,
-  },
-  {
-    path: '/getting-started',
-    component: GettingStarted,
-  },
-  {
-    path: '/features',
-    component: DocFeatures,
-  },
-  {
-    path: '/components',
-    component: DocComponents,
   },
   {
     path: '/integration',

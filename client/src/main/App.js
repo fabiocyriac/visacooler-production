@@ -12,8 +12,7 @@ const Layout = lazy(() => import('./containers/Layout'))
 const Login = lazy(() => import('./pages/public/Login'))
 const ForgotPassword = lazy(() => import('./pages/public/ForgotPassword'))
 const Register = lazy(() => import('./pages/public/Register'))
-const Documentation = lazy(() => import('./pages/public/Documentation'))
-const PUBLIC_ROUTES = ["login", "forgot-password", "register", "documentation"]
+const PUBLIC_ROUTES = ["login", "forgot-password", "register"]
 
 // Initializing different libraries
 initializeApp()
@@ -47,7 +46,6 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/documentation" element={<Documentation />} />
 
           {/* Place new routes over this */}
           <Route path="/app/*" element={<Layout />} />
